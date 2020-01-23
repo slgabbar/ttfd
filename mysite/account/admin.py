@@ -12,4 +12,3 @@ class AccountAdmin(UserAdmin):
 
 admin.site.register(Account, AccountAdmin)
 
-
