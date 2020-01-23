@@ -5,3 +5,6 @@ from django.shortcuts import render
 def home_view(request):
     return render(request, "layout/home.html", {})
 
+def dash_view(request):
+    return render(request, 'layout/dashboard.html', {})
+
