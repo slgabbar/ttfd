@@ -3,7 +3,8 @@
 {% block content %}
 
 {% if request.user.is_authenticated %}
-        <h1>Dashboard for {{request.user.username}}</h1>
+        <h1>{{request.user.team_name}}</h1>
+        <h3>{{request.user.team_location}}</h3>
 {% endif %}
 
 
