@@ -11,7 +11,10 @@ def add_player(request):
         form = CreatePlayer(request.POST)
 
         if form.is_valid():
+            form.save(commit=False)
+            form.user = request.user
             form.save()
+            # request.user.player.add(form)
             return redirect('dashboard')
     else:
         form = CreatePlayer()

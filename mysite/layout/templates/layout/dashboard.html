@@ -3,19 +3,21 @@
 {% block content %}
 
 {% if request.user.is_authenticated %}
-        <h1>{{request.user.team_name}}</h1>
-        <h3>{{request.user.team_location}}</h3>
+    <h1>{{request.user.team_name}}</h1>
+    <h3>{{request.user.team_location}}</h3>
+
+    {% if user.player.all %}
+        <ul>
+        {% for td in user.player.all %}
+            <li><p>{{td}}</p></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No players have been added yet.</p>
+    {% endif %}
+
 {% endif %}
 
-{% if player_list %}
-    <ul>
-    {% for player in player_list %}
-        <li>{{ player }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No players have been added.</p>
-{% endif %}
 
 <a href="{% url 'add' %}">Add player</a>
 
