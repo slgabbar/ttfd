@@ -6,6 +6,8 @@
     <h1>{{request.user.team_name}}</h1>
     <h3>{{request.user.team_location}}</h3>
 
+<a href="{% url 'player' %}">Edit Team / Add Players</a>
+
     {% if user.player.all %}
         <ul>
         {% for td in user.player.all %}
@@ -18,8 +20,6 @@
 
 {% endif %}
 
-
-<a href="{% url 'add' %}">Add player</a>
 
 {% endblock content %}
 

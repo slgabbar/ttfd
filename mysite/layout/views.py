@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from player.models import Player
 
@@ -8,8 +8,9 @@ def home_view(request):
     return render(request, "layout/home.html", {})
 
 def dash_view(request):
-    # players = Player.objects.order_by('last_name')
-    # context = {
-    #     'player_list': players,
-    # }
-    return render(request, 'layout/dashboard.html', {})
+    if request.user.is_authenticated:
+        # If user logged in, render dashboard view
+        return render(request, 'layout/dashboard.html', {})
+    else:
+        # If user not logged in, redirect to home
+        return redirect('home')
