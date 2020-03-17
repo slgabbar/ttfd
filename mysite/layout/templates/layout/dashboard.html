@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'layout/dashboard.css' %}">
+
 {% if request.user.is_authenticated %}
-    <h1>{{request.user.team_name}}</h1>
+    <h1 class="name">{{request.user.team_name}}</h1>
     <h3>{{request.user.team_location}}</h3>
 
 <a href="{% url 'player' %}">Edit Team / Add Players</a>
