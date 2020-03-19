@@ -1,9 +1,10 @@
 body {
+    background-color: white;
 }
 
 .header {
     overflow: hidden;
-    background-color: darkgrey;
+    background-color: white;
     padding: 20px 10px;
 }
 
@@ -47,8 +48,15 @@ body {
   }
 }
 
+hr {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient( to right, #ccc, #333, #ccc);
+}
+
 .footer {
 	overflow: hidden;
-	background-color: darkgrey;
+	background-color: white;
 	padding: 20px 10px;
 }
