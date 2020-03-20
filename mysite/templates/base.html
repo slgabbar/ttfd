@@ -8,7 +8,7 @@
 <head>
     <title>Take That For Data!</title>
     <div class="header">
-        <a href="" class="logo">Take that for data!</a>
+        <a href="{% url 'home' %}" class="logo">Take that for data!</a>
         <div class="header-right">
             {% if request.user.is_authenticated %}
                 <p>
