@@ -15,7 +15,7 @@
     {% if user.player.all %}
         <ul>
         {% for td in user.player.all %}
-            <li><p>{{td}}</p></li>
+            <li><p>{{td}} <a href="{% url 'edit' pk=td.pk%}">edit/delete</a></p></li>
         {% endfor %}
         </ul>
     {% else %}

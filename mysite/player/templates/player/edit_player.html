@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'player/edit_player.css' %}">
+<p>Edit Player:</p>
+
+<form action="{% url 'edit' pk=form.instance.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+    <a href="{% url 'delete' pk=form.instance.pk%}">Delete Player</a>
+</form>
+
+{% endblock content %}

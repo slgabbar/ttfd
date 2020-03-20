@@ -3,7 +3,9 @@ from player.models import Player
 
 
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ('user', 'first_name', 'last_name')
+    pass
+    list_display = ('user', 'player_id', 'number',
+                    'first_name', 'last_name', 'position')
 
 admin.site.register(Player, PlayerAdmin)
 
