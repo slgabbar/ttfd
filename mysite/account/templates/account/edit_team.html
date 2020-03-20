@@ -4,10 +4,11 @@
 
 {% block content %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'player/add_player.css' %}">
-<p>Add Player:</p>
+<link rel="stylesheet" type="text/css" href="{% static 'account/edit_team.css' %}">
 
-<form action="{% url 'add_player' %}" method="POST">
+<p>Edit Team:</p>
+
+<form action="{% url 'edit_team' pk=form.instance.pk %}" method="POST">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">

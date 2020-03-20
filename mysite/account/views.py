@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
-from account.forms import RegistrationForm, AccountAuthenticationForm
+from .forms import RegistrationForm, AccountAuthenticationForm, TeamForm
+from .models import Account
 
 def registration_view(request):
     context = {}
@@ -46,6 +47,14 @@ def login_view(request):
 
     context['login_form'] = form
     return render(request, 'account/login.html', context)
+
+def edit_team(request, pk):
+    team = get_object_or_404(Account, pk=pk)
+    form = TeamForm(request.POST or None, instance=team)
+    if form.is_valid():
+        form.save()
+        return redirect('dashboard')
+    return render(request, 'account/edit_team.html', {'form':form})
 
 
 
