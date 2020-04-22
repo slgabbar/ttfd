@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
 
-{% load static %}
-
 {% block content %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'player/add_player.css' %}">
 <p>Add Player:</p>
 
 <form action="{% url 'add_player' %}" method="POST">
