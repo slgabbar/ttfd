@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>Edit Player:</p>
+
+<form action="{% url 'edit_player' pk=form.instance.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+    <a href="{% url 'delete_player' pk=form.instance.pk%}">Delete Player</a>
+</form>
+
+{% endblock content %}

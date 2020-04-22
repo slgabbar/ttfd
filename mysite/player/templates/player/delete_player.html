@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<p>Delete Player:</p>
+
+<form method="POST">
+    {% csrf_token %}
+    Are you sure you want to delete "{{ object }}"?
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock content %}

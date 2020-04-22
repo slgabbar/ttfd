@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+    <h1 class="name">{{request.user.team_name}}</h1>
+    <h3>{{request.user.team_location}}</h3>
+    <p><a href="{% url 'edit_team' pk=request.user.pk %}">Edit Team Information</a></p>
+<hr>
+
+
+<a href="{% url 'add_player' %}">Add Player</a>
+
+    {% if user.player.all %}
+        <ul>
+        {% for td in user.player.all %}
+            <li><p>{{td}} <a href="{% url 'edit_player' pk=td.pk%}">edit/delete</a></p></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No players have been added yet.</p>
+    {% endif %}
+
+{% endif %}
+
+
+{% endblock content %}
+

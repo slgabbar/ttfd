@@ -10,7 +10,7 @@ class RegistrationForm(UserCreationForm):
 
     class Meta:
         model = Account
-        fields = ("username", "email", "password1", "password2")
+        fields = ("username", "email", "team_name", "team_location", "password1", "password2")
 
 class AccountAuthenticationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -25,3 +25,8 @@ class AccountAuthenticationForm(forms.ModelForm):
             password = self.cleaned_data['password']
             if not authenticate(email=email, password=password):
                 raise forms.ValidationError("Invalid login")
+
+class TeamForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['team_name', 'team_location']

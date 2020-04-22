@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
-from account.forms import RegistrationForm, AccountAuthenticationForm
+from .forms import RegistrationForm, AccountAuthenticationForm, TeamForm
+from .models import Account
 
 def registration_view(request):
     context = {}
@@ -12,7 +13,7 @@ def registration_view(request):
             raw_password = form.cleaned_data.get("password1")
             account = authenticate(email=email, password=raw_password)
             login(request, account)
-            return redirect("home")
+            return redirect("dashboard")
         else:
             context['registration_form'] = form
     else:
@@ -30,7 +31,7 @@ def login_view(request):
 
     user = request.user
     if user.is_authenticated:
-        return redirect("home")
+        return redirect("dashboard")
 
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
@@ -40,12 +41,20 @@ def login_view(request):
             user = authenticate(email=email, password=password)
             if user:
                 login(request, user)
-                return redirect("home")
+                return redirect("dashboard")
     else:
         form = AccountAuthenticationForm()
 
     context['login_form'] = form
     return render(request, 'account/login.html', context)
+
+def edit_team(request, pk):
+    team = get_object_or_404(Account, pk=pk)
+    form = TeamForm(request.POST or None, instance=team)
+    if form.is_valid():
+        form.save()
+        return redirect('dashboard')
+    return render(request, 'account/edit_team.html', {'form':form})
 
 
 

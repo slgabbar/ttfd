@@ -3,15 +3,21 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 class MyAccountManager(BaseUserManager):
-    def create_user(self, email, username, password=None):
+    def create_user(self, email, username, team_name, team_location, password=None):
         if not email:
             raise ValueError("Users must have an email address")
         if not username:
             raise ValueError("Users must have an username")
+        if not team_name:
+            raise ValueError("Users must enter team name")
+        if not team_location:
+            raise ValueError("Users must enter team location")
 
         user = self.model(
             email=self.normalize_email(email),
             username=username,
+            team_name=team_name,
+            team_location=team_location,
         )
 
         user.set_password(password)
@@ -42,8 +48,12 @@ class Account(AbstractBaseUser):
     is_staff        = models.BooleanField(default=False)
     is_superuser    = models.BooleanField(default=False)
 
+    # team information
+    team_name       = models.CharField(max_length=100, unique=False, default='TEAM_NAME')
+    team_location   = models.CharField(max_length=100, unique=False, default='TEAM_LOCATION')
+
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['username', 'team_name', 'team_location']
 
     objects = MyAccountManager()
 
