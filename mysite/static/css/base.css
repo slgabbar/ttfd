@@ -1,3 +1,60 @@
-body {
-    background-color: grey;
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #f5f5f5
 }
+
+.Site-content {
+	flex: 1;
+}
+
+.header {
+	background-color: #F5F5F5;
+	padding: 5px;
+	border-bottom: 2px solid grey;
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+}
+
+.header-left .logo {
+	font-family: Marker Felt, Fantasy;
+	font-size: 30px;
+	color: #EC6E00;
+	text-decoration: none;
+}
+
+.header-left .logo:hover {
+	color: grey;
+}
+
+.header-right a {
+	font-family: American Typewriter, serif;
+	font-size: 20px;
+	text-decoration: none;
+	color: #333333;
+	padding: 2px 6px 2px 6px;
+}
+
+.header-right span {
+	font-family: American Typewriter, serif;
+	text-decoration: none;
+	color: gray;
+}
+
+.header-right a:hover {
+	color: #EC6E00;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #505050;
+	color: #EC6E00;
+	text-align: center;
+	font-family: Marker Felt, Fantasy;
+}
+

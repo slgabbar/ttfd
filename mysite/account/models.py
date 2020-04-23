@@ -49,8 +49,8 @@ class Account(AbstractBaseUser):
     is_superuser    = models.BooleanField(default=False)
 
     # team information
-    team_name       = models.CharField(max_length=100, unique=False, default='TEAM_NAME')
-    team_location   = models.CharField(max_length=100, unique=False, default='TEAM_LOCATION')
+    team_name       = models.CharField(max_length=100, unique=False)
+    team_location   = models.CharField(max_length=100, unique=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'team_name', 'team_location']
