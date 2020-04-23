@@ -131,3 +131,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# This will load static files form BASE_DIR/static. i.e. base.css for base.html
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
