@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'layout/css/dashboard.css' %}">
+
 
 {% if request.user.is_authenticated %}
     <h1 class="name">{{request.user.team_name}}</h1>
