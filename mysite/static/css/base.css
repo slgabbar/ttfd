@@ -1,4 +1,4 @@
-.Site {
+/*.Site {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -7,7 +7,7 @@
 
 .Site-content {
 	flex: 1;
-}
+}*/
 
 .header {
 	background-color: #F5F5F5;

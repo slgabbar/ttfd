@@ -1,3 +1,17 @@
-body {
-    color: red;
+.home_body {
+	flex: display;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	text-align: center;
+	background-color: rgba(33, 33, 33, .3);
+}
+
+.home_logo {
+	justify-content: center;
+	text-decoration: none;
+	font-size: 100px;
+	color: #EC6E00;
+	vertical-align: middle;
 }
