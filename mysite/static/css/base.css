@@ -1,3 +1,4 @@
+/* Base Page Layout*/
 html, body {
   height: 100%;
 }
@@ -13,45 +14,17 @@ body {
 
 .page-footer {
 	flex-shrink: 0;
-	/*max-height: 200px;*/
 }
 
-.header {
-	background-color: #F5F5F5;
-	padding: 5px;
-	border-bottom: 2px solid grey;
-	display: flex;
-	justify-content: space-between;
-	align-items: baseline;
+/* Navigation bar Stylinbg*/
+.navbar {
+	background-color: #EC6E00;
 }
 
-.header-left .logo {
-	font-family: Marker Felt, Fantasy;
-	font-size: 30px;
-	color: #EC6E00;
-	text-decoration: none;
-}
-
-.header-left .logo:hover {
-	color: grey;
-}
-
-.header-right a {
+/*.navbar-nav {
+	justify-content: end;
+}*/
+/*
+.navbar-brand {
 	font-family: American Typewriter, serif;
-	font-size: 20px;
-	text-decoration: none;
-	color: #333333;
-	padding: 2px 6px 2px 6px;
-}
-
-.header-right span {
-	font-family: American Typewriter, serif;
-	text-decoration: none;
-	color: gray;
-}
-
-.header-right a:hover {
-	color: #EC6E00;
-}
-
-
+}*/
