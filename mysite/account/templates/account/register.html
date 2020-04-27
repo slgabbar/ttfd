@@ -6,12 +6,28 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'account/css/register.css' %}">
 
+<div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px;">
+    <h4 class="card-title mt-3 text-center">Create Account</h4>
+    <p class="text-center">Get started with your free account</p>
 
-<h2>Register</h2>
-<form method="post">{% csrf_token %}
+    <form method="post">
 
-    {% for field in registration_form %}
-        <p>
+        {% csrf_token %}
+
+        {% for field in registration_form %}
+
+            <div class="form-group input-group">
+
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+
+                {{field}}
+                <!-- <input name="" class="form-control" placeholder="Username" type="text"> -->
+            </div> <!-- form-group// -->
+
+    <!--     <p>
             {{field.label_tag}}
             {{field}}
 
@@ -22,11 +38,16 @@
             {% for error in field.errors %}
                 <p style="color: red;">{{error}}</p>
             {% endfor %}
-        </p>
-    {% endfor %}
-    <button type="submit">Register</button>
+        </p> -->
+        {% endfor %}
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+        </div> <!-- form-group// --> 
+        <p class="text-center">Have an account? <a href="">Log In</a> </p>  
+    </form>
 
-</form>
+</article>
+
+</div>
 
 {% endblock content %}
-

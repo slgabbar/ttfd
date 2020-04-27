@@ -6,7 +6,41 @@ from account.models import Account
 
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(max_length=60, help_text="Required. Add a valid email address.")
+    username = forms.CharField(label='username', widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Username',
+        }
+    ))
+    email = forms.EmailField(max_length=60, help_text="Required. Add a valid email address.",
+                             widget=forms.EmailInput(
+                                 attrs={'class':'form-control', 'placeholder': 'Email Address'}
+                             ))
+    team_name = forms.CharField(label='team_name', widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Team Name',
+        }
+    ))
+    team_location = forms.CharField(label='team_location', widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Team Location',
+        }
+    ))
+
+    password1 = forms.CharField(label='password1', widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Create Password'
+        }
+    ))
+    password2 = forms.CharField(label='password2', widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Repeat Password'
+        }
+    ))
 
     class Meta:
         model = Account
