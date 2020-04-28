@@ -4,28 +4,29 @@
 
 {% load crispy_forms_tags %}
 
-<!-- register page with crispy form -->
+{% block content %}
 
- {% block content %}
+ <!-- register page with crispy form -->
 
  <link rel="stylesheet" type="text/css" href="{% static 'account/css/register.css' %}">
 
 <div class="register-container">
-<div class="card mx-auto">
+    
+    <div class="card mx-auto">
 
-    <article class="card-body">        
+        <article class="card-body">        
 
-        <h3 class="card-title text-center">Create Account</h3>
-        <p class="card-text text-center">Get started with your free account today!</p>  
+            <h3 class="card-title text-center">Create Account</h3>
+            <p class="card-text text-center">Get started with your free account today!</p>  
 
             {% crispy registration_form %}
 
-        <p class ="text-center"> Have an account? <a href="{% url 'login' %}"> Log In </a> </p>
-
+            <p class ="text-center"> Have an account? <a href="{% url 'login' %}"> Log In </a> </p>
 
     </article>
 
-</div>
+    </div>
+    
 </div>
 
  {% endblock content %}

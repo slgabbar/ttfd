@@ -41,22 +41,19 @@ class RegistrationForm(UserCreationForm):
         fields = ("username", "email", "team_name", "team_location", "password1", "password2")
 
 class AccountAuthenticationForm(forms.ModelForm):
-    email = forms.CharField(label='Email', widget=forms.EmailInput(
-        attrs={
-            'class' : 'form-control',
-            'type': 'email',
-            'name': 'email',
-            'placeholder': 'Email'
-        }
-    ))
-    password = forms.CharField(label='Password', widget=forms.PasswordInput(
-        attrs={
-            'class': 'form-control',
-            'type': 'password',
-            'name': 'name',
-            'placeholder': 'Password'
-        }
-    ))
+    email = forms.CharField(label='', widget=forms.EmailInput(
+        attrs={'class' : 'form-control','type': 'email','name': 'email','placeholder': 'Email'}))
+    password = forms.CharField(label='', widget=forms.PasswordInput(
+        attrs={'class': 'form-control','type': 'password','name': 'name','placeholder': 'Password'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            PrependedText('email', '<i class="fa fa-envelope fa-fw"></i>'),
+            PrependedText('password', '<i class="fa fa-lock fa-fw"></i>'),
+            Div(Submit('submit', 'Login', css_class="btn btn-primary btn-block"),css_class='form-group')
+        )
 
     class Meta:
         model = Account
