@@ -2,52 +2,32 @@
 
 {% load static %}
 
-{% block content %}
+{% load crispy_forms_tags %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'account/css/register.css' %}">
+<!-- register page with crispy form -->
 
-<div class="card bg-light">
-<article class="card-body mx-auto" style="max-width: 400px;">
-    <h4 class="card-title mt-3 text-center">Create Account</h4>
-    <p class="text-center">Get started with your free account</p>
+ {% block content %}
 
-    <form method="post">
+ <link rel="stylesheet" type="text/css" href="{% static 'account/css/register.css' %}">
 
-        {% csrf_token %}
+<div class="register-container">
+<div class="card mx-auto">
 
-        {% for field in registration_form %}
+    <article class="card-body">        
 
-            <div class="form-group input-group">
+        <h3 class="card-title text-center">Create Account</h3>
+        <p class="card-text text-center">Get started with your free account today!</p>  
 
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                </div>
+            {% crispy registration_form %}
 
-                {{field}}
-                <!-- <input name="" class="form-control" placeholder="Username" type="text"> -->
-            </div> <!-- form-group// -->
+        <p class ="text-center"> Have an account? <a href="{% url 'login' %}"> Log In </a> </p>
 
-    <!--     <p>
-            {{field.label_tag}}
-            {{field}}
 
-            {% if field.help_text %}
-                <small style="color: grey;">{{field.help_text}}</small>
-            {% endif %}
-
-            {% for error in field.errors %}
-                <p style="color: red;">{{error}}</p>
-            {% endfor %}
-        </p> -->
-        {% endfor %}
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
-        </div> <!-- form-group// --> 
-        <p class="text-center">Have an account? <a href="">Log In</a> </p>  
-    </form>
-
-</article>
+    </article>
 
 </div>
+</div>
 
-{% endblock content %}
+ {% endblock content %}
+
+
