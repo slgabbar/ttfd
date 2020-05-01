@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from .forms import RegistrationForm, AccountAuthenticationForm, TeamForm
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
+
 from .models import Account
 
 def registration_view(request):
@@ -48,14 +51,12 @@ def login_view(request):
     context['login_form'] = form
     return render(request, 'account/login.html', context)
 
-def edit_team(request, pk):
-    team = get_object_or_404(Account, pk=pk)
-    form = TeamForm(request.POST or None, instance=team)
-    if form.is_valid():
-        form.save()
-        return redirect('dashboard')
-    return render(request, 'account/edit_team.html', {'form':form})
-
+class TeamUpdate(UpdateView):
+    model = Account
+    template_name = 'account/edit_team.html'
+    context_object_name = 'account'
+    fields = ('team_name', 'team_location',)
+    success_url = reverse_lazy('dashboard')
 
 
 

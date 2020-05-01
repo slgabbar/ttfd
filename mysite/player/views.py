@@ -2,10 +2,13 @@ from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
 from .models import Player
 from .forms import PlayerForm
 
-class PlayerDetail(DetailView):
+class PlayerDetail(LoginRequiredMixin, DetailView):
     model = Player
     template_name = 'player/detail.html'
     context_object_name = 'player'
