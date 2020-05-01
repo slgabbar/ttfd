@@ -19,7 +19,7 @@
     {% if user.player.all %}
         <ul>
         {% for td in user.player.all %}
-            <li><p>{{td}} <a href="{% url 'edit_player' pk=td.pk%}">edit/delete</a></p></li>
+            <li> <a href="{% url 'detail_player' pk=td.pk %}">{{ td }}</a> <a href="{% url 'edit_player' pk=td.pk%}">edit/delete</a> </li>
         {% endfor %}
         </ul>
     {% else %}

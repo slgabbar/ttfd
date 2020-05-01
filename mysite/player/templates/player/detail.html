@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Player Details: {{player}}</h5>
+    </div>
+    <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-3">First Name:</dt>
+      <dd class="col-sm-9">{{ player.first_name }}</dd>
+      <dt class="col-sm-3">Last Name:</dt>
+      <dd class="col-sm-9">{{ player.last_name }}</dd>
+      <dt class="col-sm-3">Position:</dt>
+      <dd class="col-sm-9">{{ player.position }}</dd>
+      <dt class="col-sm-3">Number:</dt>
+      <dd class="col-sm-9">{{ player.number }}</dd>
+    </dl>
+    </div>
+</div>
+
+{% endblock %}
