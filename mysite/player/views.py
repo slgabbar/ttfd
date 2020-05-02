@@ -3,13 +3,18 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
 
+from bootstrap_modal_forms.generic import (BSModalCreateView,
+                                           BSModalUpdateView,
+                                           BSModalReadView,
+                                           BSModalDeleteView)
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from .models import Player
 from .forms import PlayerForm
 
-class PlayerDetail(LoginRequiredMixin, DetailView):
+class PlayerDetail(LoginRequiredMixin, BSModalReadView):
     model = Player
     template_name = 'player/detail.html'
     context_object_name = 'player'
@@ -20,7 +25,7 @@ class PlayerDetail(LoginRequiredMixin, DetailView):
             raise PermissionDenied
         return obj
 
-class PlayerCreate(CreateView):
+class PlayerCreate(BSModalCreateView):
     template_name = 'player/add_player.html'
     form_class = PlayerForm
     success_url = reverse_lazy('dashboard')
@@ -30,11 +35,12 @@ class PlayerCreate(CreateView):
         form.instance.user = self.request.user
         return super(PlayerCreate, self).form_valid(form)
 
-class PlayerUpdate(UpdateView):
+class PlayerUpdate(BSModalUpdateView):
     model = Player
     template_name = 'player/edit_player.html'
     context_object_name = 'player'
-    fields = ('first_name', 'last_name', 'position', 'number',)
+    form_class = PlayerForm
+    # fields = ('first_name', 'last_name', 'position', 'number',)
     success_url = reverse_lazy('dashboard')
 
     def get_object(self, queryset=None):
@@ -43,10 +49,11 @@ class PlayerUpdate(UpdateView):
             raise PermissionDenied
         return obj
 
-class PlayerDelete(DeleteView):
+class PlayerDelete(BSModalDeleteView):
     model = Player
     template_name = 'player/delete_player.html'
     success_url = reverse_lazy('dashboard')
+    success_message = "Player successfully deleted."
 
     def get_object(self, queryset=None):
         obj = super().get_object()
