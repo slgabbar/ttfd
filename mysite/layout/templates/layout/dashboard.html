@@ -29,13 +29,13 @@
 <button class="create-player btn btn-primary" type="button" name="button">Add Player</button>
 
 <div class="table-responsive">
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th scope="col">Number</th>
                 <th scope="col">Name</th>
                 <th scope="col">Position</th>
-                <th scope="col"></th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -46,15 +46,9 @@
                     <td>{{td}}</td>
                     <td>{{td.position}}</td>
                     <td>
-                        <button type="button" class="detail-player btn btn-sm btn-primary" data-id="{% url 'detail_player' pk=td.pk %}">
-                            <span class="fa fa-eye"></span>
-                        </button>
-                        <button type="button" class="update-player btn btn-sm btn-primary" data-id="{% url 'edit_player' pk=td.pk %}">
-                            <span class="fa fa-pencil"></span>
-                        </button>
-                        <button type="button" class="delete-player btn btn-sm btn-danger" data-id="{% url 'delete_player' pk=td.pk %}">
-                            <span class="fa fa-trash"></span>
-                        </button>
+                        <span><button type="button" class="detail-player btn btn-sm btn-primary" data-id="{% url 'detail_player' pk=td.pk %}"><i class="fas fa-eye"></i></button></span>
+                        <span><button type="button" class="update-player btn btn-sm btn-primary" data-id="{% url 'edit_player' pk=td.pk %}"><i class="fas fa-pencil-alt"></i></button></span>
+                        <span><button type="button" class="delete-player btn btn-sm btn-danger" data-id="{% url 'delete_player' pk=td.pk %}"><i class="fas fa-trash-alt"></i></button></span>
                     </td>
                 </tr>
                 {% endfor %}
