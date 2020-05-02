@@ -1,6 +1,7 @@
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.core.exceptions import PermissionDenied
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -12,6 +13,12 @@ class PlayerDetail(LoginRequiredMixin, DetailView):
     model = Player
     template_name = 'player/detail.html'
     context_object_name = 'player'
+
+    def get_object(self, queryset=None):
+        obj = super().get_object()
+        if obj.user != self.request.user:
+            raise PermissionDenied
+        return obj
 
 class PlayerCreate(CreateView):
     template_name = 'player/add_player.html'
@@ -30,7 +37,19 @@ class PlayerUpdate(UpdateView):
     fields = ('first_name', 'last_name', 'position', 'number',)
     success_url = reverse_lazy('dashboard')
 
+    def get_object(self, queryset=None):
+        obj = super().get_object()
+        if obj.user != self.request.user:
+            raise PermissionDenied
+        return obj
+
 class PlayerDelete(DeleteView):
     model = Player
     template_name = 'player/delete_player.html'
     success_url = reverse_lazy('dashboard')
+
+    def get_object(self, queryset=None):
+        obj = super().get_object()
+        if obj.user != self.request.user:
+            raise PermissionDenied
+        return obj

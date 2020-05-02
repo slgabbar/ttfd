@@ -4,6 +4,9 @@ from .forms import RegistrationForm, AccountAuthenticationForm, TeamForm
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 
+from django.core.exceptions import PermissionDenied
+
+
 from .models import Account
 
 def registration_view(request):
@@ -57,6 +60,14 @@ class TeamUpdate(UpdateView):
     context_object_name = 'account'
     fields = ('team_name', 'team_location',)
     success_url = reverse_lazy('dashboard')
+
+    def get_object(self, queryset=None):
+        obj = super().get_object()
+        print(obj.username)
+        print(self.request.user.username)
+        if obj.username != self.request.user.username:
+            raise PermissionDenied
+        return obj
 
 
 
