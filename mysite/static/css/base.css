@@ -1,5 +1,5 @@
 /* Base Page Layout*/
-html, body {
+html, body{
   height: 100%;
 }
 
@@ -9,7 +9,10 @@ body {
 }
 
 .content {
-  flex: 1 0 auto;
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .page-footer {
@@ -18,13 +21,5 @@ body {
 
 /* Navigation bar Stylinbg*/
 .navbar {
-	background-color: #EC6E00;
+	background-color: purple;
 }
-
-/*.navbar-nav {
-	justify-content: end;
-}*/
-/*
-.navbar-brand {
-	font-family: American Typewriter, serif;
-}*/

@@ -4,6 +4,8 @@ from .forms import RegistrationForm, AccountAuthenticationForm, TeamForm
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 
+from bootstrap_modal_forms.generic import BSModalUpdateView
+
 from django.core.exceptions import PermissionDenied
 
 
@@ -54,10 +56,11 @@ def login_view(request):
     context['login_form'] = form
     return render(request, 'account/login.html', context)
 
-class TeamUpdate(UpdateView):
+class TeamUpdate(BSModalUpdateView):
     model = Account
     template_name = 'account/edit_team.html'
     context_object_name = 'account'
+    # form_class = TeamForm
     fields = ('team_name', 'team_location',)
     success_url = reverse_lazy('dashboard')
 
