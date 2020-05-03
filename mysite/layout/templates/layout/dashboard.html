@@ -2,11 +2,14 @@
 
 {% load static %}
 
+<!-- <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script> -->
+
+
 {% block content %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'layout/css/dashboard.css' %}">
-
 <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+
 
 <div class="modal fade" tabindex="-1" role="dialog" id="modal">
   <div class="modal-dialog" role="document">
@@ -14,49 +17,71 @@
   </div>
 </div>
 
-{% if request.user.is_authenticated %}
-    <h1 class="name">{{request.user.team_name}}</h1>
-    <h3>{{request.user.team_location}}</h3>
-<hr>
+<div class="grid-container">
 
+    <!-- Side bar -->
+    <aside class="sidenav dark">
+<!--     <ul class="sidenav__list">
+        <li class="sidenav__list-item">Item One</li>
+        <li class="sidenav__list-item">Item Two</li>
+        <li class="sidenav__list-item">Item Three</li>
+        <li class="sidenav__list-item">Item Four</li>
+        <li class="sidenav__list-item">Item Five</li>
+    </ul> -->
+  </aside>
 
-<!-- Create book button -->
-<button class="create-player btn btn-primary" type="button" name="button">Add Player</button>
+  <!-- main content -->
+  <main class="main">
 
-<div class="table-responsive">
-    <table class="table table-hover table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Number</th>
-                <th scope="col">Name</th>
-                <th scope="col">Position</th>
-                <th scope="col">Height</th>
-                <th scope="col">Weight (lbs.)</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% if user.player.all %}
-                {% for td in user.player.all %}
+    <!-- Dasgboard heading with team name and locations -->
+    <div class="card p1">
+        <div class="card-body">
+            <h3>{{request.user.team_name}}</h3>
+            <h5 class="text-muted">{{request.user.team_location}}</h5>
+        </div>
+    </div>
+
+    <div class="table-responsive p-1">
+        <table class="table table-hover table-bordered table-striped table-dark">
+            <thead>
                 <tr>
-                    <td>{{td.number}}</td>
-                    <td>{{td}}</td>
-                    <td>{{td.position}}</td>
-                    <td>{{td.height}}</td>
-                    <td>{{td.weight}}</td>
-                    <td>
-                        <span><button type="button" class="detail-player btn btn-sm btn-primary" data-id="{% url 'detail_player' pk=td.pk %}"><i class="fas fa-eye"></i></button></span>
-                        <span><button type="button" class="update-player btn btn-sm btn-primary" data-id="{% url 'edit_player' pk=td.pk %}"><i class="fas fa-pencil-alt"></i></button></span>
-                        <span><button type="button" class="delete-player btn btn-sm btn-danger" data-id="{% url 'delete_player' pk=td.pk %}"><i class="fas fa-trash-alt"></i></button></span>
-                    </td>
+                    <th scope="col">Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Height</th>
+                    <th scope="col">Weight (lbs.)</th>
+                    <th scope="col">Actions</th>
                 </tr>
+            </thead>
+            <tbody>
+                {% if user.player.all %}
+                {% for td in user.player.all %}
+                    <tr>
+                        <td>{{td.number}}</td>
+                        <td>{{td}}</td>
+                        <td>{{td.position}}</td>
+                        <td>{{td.height}}</td>
+                        <td>{{td.weight}}</td>
+                        <td>
+                            <span><button type="button" class="detail-player btn btn-sm btn-primary" data-id="{% url 'detail_player' pk=td.pk %}"><i class="fas fa-eye"></i></button></span>
+                            <span><button type="button" class="update-player btn btn-sm btn-primary" data-id="{% url 'edit_player' pk=td.pk %}"><i class="fas fa-pencil-alt"></i></button></span>
+                            <span><button type="button" class="delete-player btn btn-sm btn-danger" data-id="{% url 'delete_player' pk=td.pk %}"><i class="fas fa-trash-alt"></i></button></span>
+                        </td>
+                    </tr>
                 {% endfor %}
                 {% else %}
-                    <p> No players added yet </p>
+                    <tr>
+                        <td colspan="6">
+                            <div class="text-center">
+                                <button class="create-player btn btn-primary" type="button" name="button">Add Players</button>
+                            </div>
+                        </td>
+                    </tr>
                 {% endif %}
-            {% endif %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+</main>
 </div>
 
 <script type="text/javascript">
