@@ -17,94 +17,46 @@
 <!-- Bootstrap icons, basketball for login page -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
-
 <head>
-  
-  <title>Take That For Data!</title>
 
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <title>Take That For Data!</title>
+  <nav class="navbar navbar-dark navbar-expand-lg">
     <a class="navbar-brand" href="{% url 'home' %}">Take That For Data!</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
 
-  <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-       {% if request.user.is_authenticated %}
-<!--       <span>Welcome, {{request.user.username}}!!</span> -->
+    <div class="collapse navbar-collapse justify-content-end">
+      <div class="navbar-nav">
+        {% if request.user.is_authenticated %}
           <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
           <a class="nav-item nav-link" href="{% url 'dashboard' %}">Dashboard</a>
           <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-          <!-- <span class="navbar-text">Welcome, {{request.user.username}}!</span> -->
         {% else %}
           <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
           <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
           <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
         {% endif %}
+      </div>
     </div>
-  </div>
-</nav>
-
+  </nav>
 
 </head>
 
 
 <body>
-
 <!-- Content to be extended from other pages  -->
     <div class='content'>
         {% block content %}
 
         {% endblock content %}
     </div>
-
 <!-- Footer -->
-<footer class="page-footer font-small elegant-color">
-  <!-- Footer Elements -->
-  <div class="container">
-    <!-- Grid row-->
-    <div class="row">
-      <!-- Grid column -->
-      <div class="col-md-12 py-5">
-        <div class="mb-5 flex-center">
-          <!-- Facebook -->
-          <a class="fb-ic">
-            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-          </a>
-          <!-- Twitter -->
-          <a class="tw-ic">
-            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-          </a>
-          <!-- Google +-->
-          <a class="gplus-ic">
-            <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-          </a>
-          <!--Linkedin -->
-          <a class="li-ic">
-            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-          </a>
-          <!--Instagram-->
-          <a class="ins-ic">
-            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-          </a>
-          <!--Pinterest-->
-          <a class="pin-ic">
-            <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
-          </a>
-        </div>
-      </div>
-      <!-- Grid column -->
+  <footer class="py-3 bg-light text-white-50" style="flex-shrink: none">
+    <div class="container text-center">
+      <span class="text-muted">Copyright &copy; ttfd.com</span>
     </div>
-    <!-- Grid row-->
-  </div>
-  <!-- Footer Elements -->
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="#">ttfd.com</a>
-  </div>
-  <!-- Copyright -->
-</footer>
-<!-- Footer -->
+  </footer>
 
 </body>
 
