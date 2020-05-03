@@ -19,7 +19,6 @@ body {
 	flex-shrink: 0;
 }
 
-/* Navigation bar Stylinbg*/
 .navbar {
-	background-color: purple;
+	background-color: #EE6F00;
 }
