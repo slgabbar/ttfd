@@ -8,8 +8,12 @@
 {% block content %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'layout/css/dashboard.css' %}">
-<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
 
+<!-- Jquery link and Bootstrap for bootstrap modals -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+<!--  -->
 
 <div class="modal fade" tabindex="-1" role="dialog" id="modal">
   <div class="modal-dialog" role="document">
@@ -32,25 +36,27 @@
 
   <!-- main content -->
   <main class="main">
-
-    <!-- Dasgboard heading with team name and locations -->
-    <div class="card p1">
-        <div class="card-body">
-            <h3>{{request.user.team_name}}</h3>
-            <h5 class="text-muted">{{request.user.team_location}}</h5>
+    <div class="table-responsive-sm p-3">
+        <div class="table-title">
+            <div class="row">
+                <div>
+                    <h3>Team <b>lineup</b></h3>
+                </div>
+                <div>
+                    <button type="button" class="create-player btn btn-primary add-player-btn"><i class="fa fa-plus"></i> Add Player</button>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="table-responsive p-1">
-        <table class="table table-hover table-bordered table-striped table-dark">
-            <thead>
+        <table class="table table-hover">
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col">Number</th>
                     <th scope="col">Name</th>
                     <th scope="col">Position</th>
                     <th scope="col">Height</th>
                     <th scope="col">Weight (lbs.)</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -62,10 +68,29 @@
                         <td>{{td.position}}</td>
                         <td>{{td.height}}</td>
                         <td>{{td.weight}}</td>
-                        <td>
-                            <span><button type="button" class="detail-player btn btn-sm btn-primary" data-id="{% url 'detail_player' pk=td.pk %}"><i class="fas fa-eye"></i></button></span>
-                            <span><button type="button" class="update-player btn btn-sm btn-primary" data-id="{% url 'edit_player' pk=td.pk %}"><i class="fas fa-pencil-alt"></i></button></span>
-                            <span><button type="button" class="delete-player btn btn-sm btn-danger" data-id="{% url 'delete_player' pk=td.pk %}"><i class="fas fa-trash-alt"></i></button></span>
+                        <td class="text-center px-0">
+                            <button type="button" class="detail-player btn btn-sm btn-primary p-2" data-id="{% url 'detail_player' pk=td.pk %}">
+                                <span class="far fa-eye"></span>
+                            </button>
+                            <button type="button" class="detail-player btn btn-sm btn-primary p-2" data-id="{% url 'edit_player' pk=td.pk %}">
+                                <span class="fas fa-edit"></span>
+                            </button>
+                            <button type="button" class="detail-player btn btn-sm btn-danger p-2" data-id="{% url 'delete_player' pk=td.pk %}">
+                                <span class="fa fa-trash"></span>
+                            </button>
+                          <!--   <a class="btn btn-default"><em class="fa fa-eye"></em></a>
+                            <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            <a class="btn btn-danger"><em class="fa fa-trash"></em></a> -->
+                            <!-- <a type="button" data-toggle="tooltip"><i class="far fa-eye"></i></a>
+                            <a type="button" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
+                            <a type="button" data-toggle="tooltip"><i class="far fa-trash-alt"></i></a> -->
+                           <!--  <button type="button" class="btn btn-primary p-0"><i class="far fa-eye"></i></button>
+                            <button type="button" class="btn btn-success p-0"><i class="fas fa-edit"></i></button>
+                            <button type="button" class="btn btn-danger p-0"><i class="far fa-trash-alt"></i></button> -->
+<!--                             <button type="button" class="detail-player btn" data-id="{% url 'detail_player' pk=td.pk %}"><i class="fas fa-eye"></i></button>
+                            <button type="button" class="detail-player btn btn-sm btn-primary" data-id="{% url 'detail_player' pk=td.pk %}"><i class="fas fa-eye"></i></button>
+                            <button type="button" class="update-player btn btn-sm btn-primary" data-id="{% url 'edit_player' pk=td.pk %}"><i class="fas fa-pencil-alt"></i></button>
+                            <button type="button" class="delete-player btn btn-sm btn-danger" data-id="{% url 'delete_player' pk=td.pk %}"><i class="fas fa-trash-alt"></i></button> -->
                         </td>
                     </tr>
                 {% endfor %}

@@ -1,11 +1,54 @@
 .grid-container {
 	display: grid;
 	grid-template-areas: "sidenav main";
-	grid-template-columns: 200px 1fr;
+	grid-template-columns: 300px 1fr;
 	/*grid-template-rows: 50px 1fr 50px;*/
 	height: 100%;
 }
 
+.table-responsive-sm {
+	/*width: 700px;*/
+	/*margin: 30px auto;*/
+/*	display: flex;
+	flex-direction: column;
+	justify-content: center;*/
+	/*margin: 0 0 auto;*/
+	/*background: orange;*/
+	/*padding: 20px;	*/
+	/*box-shadow: 0 1px 1px rgba(0,0,0,.05);*/
+}
+
+.table-title {
+	display: flex;
+	flex-direction: column;
+	/*float: left;*/
+        /*padding-bottom: 10px;*/
+        /*margin: 0 0 auto;*/
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin: 0 0 auto;
+}
+
+.table-title .add-player-btn {
+	/*float: right;*/
+	/*height: 30px;*/
+	font-weight: bold;
+	font-size: 12px;
+	text-shadow: none;
+	min-width: 100px;
+	border-radius: 50px;
+	/*line-height: 13px;*/
+}
+
+/*.table-title .add-new i {
+	margin-right: 4px;
+}
+*/
 .sidenav {
   grid-area: sidenav;
   background-color: gray;
