@@ -15,10 +15,6 @@ body {
 	justify-content: center;
 }
 
-.page-footer {
-	flex-shrink: 0;
-}
-
 .navbar {
 	background-color: #EE6F00;
 }

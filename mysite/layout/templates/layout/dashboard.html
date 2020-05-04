@@ -1,50 +1,59 @@
-{% extends 'base.html' %}
+{% extends 'base_dash.html' %}
 
 {% load static %}
 
-<!-- <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script> -->
+{% block side-content %}
 
+<header class="header">
+    <nav class="navbar navbar-dark shadow-none" style="background-color: #36454f;">
+        <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-basketball-ball"></i></a>
+    </nav>
+</header>
 
-{% block content %}
+<div class="sidenav-user p-3 mb-2 text-light"><i class="fas fa-user"></i> {{user.username}}</div>
 
-<link rel="stylesheet" type="text/css" href="{% static 'layout/css/dashboard.css' %}">
-
-<!-- Jquery link and Bootstrap for bootstrap modals -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
-<!--  -->
-
-<div class="modal fade" tabindex="-1" role="dialog" id="modal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content"></div>
-  </div>
+<div class="sidenav-category">
+    <div class="text-muted">CATEGORY</div>
+    <div><i class="fas fa-list"></i></div>
 </div>
 
-<div class="grid-container">
+<!-- <ul class="sidenav__list">
+    <li class="sidenav__list-item"><i class="fa fa-plus"></i> New Game</li>
+    <li class="sidenav__list-item">Item 3...</li>
+    <li class="sidenav__list-item">Item 4...</li>
+    <li class="sidenav__list-item">Item 5...</li>
+    <li class="sidenav__list-item">Item 6...</li>
+    <li class="sidenav__list-item">Item 7...</li>
+  </ul> -->
 
-    <!-- Side bar -->
-    <aside class="sidenav dark">
-<!--     <ul class="sidenav__list">
-        <li class="sidenav__list-item">Item One</li>
-        <li class="sidenav__list-item">Item Two</li>
-        <li class="sidenav__list-item">Item Three</li>
-        <li class="sidenav__list-item">Item Four</li>
-        <li class="sidenav__list-item">Item Five</li>
-    </ul> -->
-  </aside>
+{% endblock side-content %}
 
-  <!-- main content -->
-  <main class="main">
-    <div class="table-responsive-sm p-3">
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'layout/css/dashboard.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <div class="row bg-light p-3 mb-2 text-dark">
+        <div><h2>{{ user.team_name }}</h2></div>
+        <div><h4 class="text-muted">{{user.team_location}}</h4></div>
+    </div>
+
+    <div class="table-responsive-sm p-3 player-table bg-light">
+
         <div class="table-title">
-            <div class="row">
-                <div>
-                    <h3>Team <b>lineup</b></h3>
-                </div>
-                <div>
-                    <button type="button" class="create-player btn btn-primary add-player-btn"><i class="fa fa-plus"></i> Add Player</button>
-                </div>
+            <div>
+                <h3>Team <b>lineup</b></h3>
+            </div>
+            <div>
+                <button type="button" class="create-player btn btn-primary add-player-btn"><i class="fa fa-plus"></i> Add Player</button>
             </div>
         </div>
 
@@ -68,7 +77,8 @@
                         <td>{{td.position}}</td>
                         <td>{{td.height}}</td>
                         <td>{{td.weight}}</td>
-                        <td class="text-center px-0">
+                        <td>% % %</td>
+                        <!-- <td class="text-center px-0">
                             <button type="button" class="detail-player btn btn-sm btn-primary p-2" data-id="{% url 'detail_player' pk=td.pk %}">
                                 <span class="far fa-eye"></span>
                             </button>
@@ -78,27 +88,14 @@
                             <button type="button" class="detail-player btn btn-sm btn-danger p-2" data-id="{% url 'delete_player' pk=td.pk %}">
                                 <span class="fa fa-trash"></span>
                             </button>
-                          <!--   <a class="btn btn-default"><em class="fa fa-eye"></em></a>
-                            <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
-                            <a class="btn btn-danger"><em class="fa fa-trash"></em></a> -->
-                            <!-- <a type="button" data-toggle="tooltip"><i class="far fa-eye"></i></a>
-                            <a type="button" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
-                            <a type="button" data-toggle="tooltip"><i class="far fa-trash-alt"></i></a> -->
-                           <!--  <button type="button" class="btn btn-primary p-0"><i class="far fa-eye"></i></button>
-                            <button type="button" class="btn btn-success p-0"><i class="fas fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger p-0"><i class="far fa-trash-alt"></i></button> -->
-<!--                             <button type="button" class="detail-player btn" data-id="{% url 'detail_player' pk=td.pk %}"><i class="fas fa-eye"></i></button>
-                            <button type="button" class="detail-player btn btn-sm btn-primary" data-id="{% url 'detail_player' pk=td.pk %}"><i class="fas fa-eye"></i></button>
-                            <button type="button" class="update-player btn btn-sm btn-primary" data-id="{% url 'edit_player' pk=td.pk %}"><i class="fas fa-pencil-alt"></i></button>
-                            <button type="button" class="delete-player btn btn-sm btn-danger" data-id="{% url 'delete_player' pk=td.pk %}"><i class="fas fa-trash-alt"></i></button> -->
-                        </td>
+                        </td> -->
                     </tr>
                 {% endfor %}
                 {% else %}
                     <tr>
                         <td colspan="6">
                             <div class="text-center">
-                                <button class="create-player btn btn-primary" type="button" name="button">Add Players</button>
+                                No players have been added yet. 
                             </div>
                         </td>
                     </tr>
@@ -106,8 +103,6 @@
             </tbody>
         </table>
     </div>
-</main>
-</div>
 
 <script type="text/javascript">
   $(function () {
@@ -133,5 +128,8 @@
   });
 </script>
 
-{% endblock content %}
+
+{% endblock content%}
+
+
 

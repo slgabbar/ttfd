@@ -18,8 +18,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
 <head>
-
   <title>Take That For Data!</title>
+</head>
+
+<body>
+
   <nav class="navbar navbar-dark navbar-expand-lg">
     <a class="navbar-brand" href="{% url 'home' %}">Take That For Data!</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,21 +52,21 @@
       </ul>
     </div>
   </nav>
-</head>
 
-<body>
 <!-- Content to be extended from other pages  -->
-    <div class='content'>
-        {% block content %}
+  <div class='content'>
+    {% block content %}
 
-        {% endblock content %}
-    </div>
+    {% endblock content %}
+  </div>
+
 <!-- Footer -->
   <footer class="py-3 bg-light text-white-50" style="flex-shrink: none">
     <div class="container text-center">
       <span class="text-muted">Copyright &copy; ttfd.com</span>
     </div>
   </footer>
+  
 </body>
 
 </html>
