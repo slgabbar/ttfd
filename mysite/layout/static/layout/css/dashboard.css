@@ -7,8 +7,13 @@
 .player-table {
 	/*width: 700px;*/
 	margin: 20px 20px auto;
-	/*background: gray;*/
+	/*background: black;*/
 	/*box-shadow: 0 1px 1px rgba(0,0,0,.05);*/
+}
+
+tr{
+	line-height: 5px;
+	max-height: 5px;
 }
 
 .table-title{
@@ -25,6 +30,14 @@
 	line-height: 13px;
 }
 
+.action-buttons {
+	/*height: 100%;*/
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
 /* Title on top of sidenav */
 .sidenav-title {
 	border: solid white 1px;
@@ -36,24 +49,31 @@
 	filter: brightness(150%);
 }
 
+.sidenav-section {
+	display: flex;
+	flex-direction: column;
+	/*background: red;*/
+}
+
 .sidenav-category {
+	/*border: solid black;*/
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	margin: 10px 10px auto;
 }
 
-.sidenav__list {
-    padding: 0;
-    list-style-type: none;
-  }
+.sidenav-list {
+	padding: 0;
+	list-style-type: none;
+}
 
-  .sidenav__list-item {
-    padding: 5px 5px 5px 5px;
-    color: #ddd;
-  }
+.sidenav-list-item {
+	padding: 10px 10px 10px 10px;
+}
 
-  .sidenav__list-item:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+.sidenav-list-item:hover {
+	background-color: rgba(255, 255, 255, 0.2);
     cursor: pointer;
-  }
+}
+
