@@ -14,3 +14,10 @@ def dash_view(request):
     else:
         # If user not logged in, redirect to home
         return redirect('home')
+
+def shotchart_view(request):
+    if request.user.is_authenticated:
+        return render(request, 'layout/shotchart.html', {})
+    else:
+        return redirect('home')
+
