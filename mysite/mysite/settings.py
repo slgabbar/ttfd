@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'account',
     'layout',
     'player',
+    'game',
 
     # Django Apps
     'django.contrib.admin',

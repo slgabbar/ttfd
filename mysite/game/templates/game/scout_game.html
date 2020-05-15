@@ -1,0 +1,40 @@
+{% extends 'base_dash.html' %}
+
+{% load static %}
+
+{% block side-content %}
+<link rel="stylesheet" type="text/css" href="{% static 'game/css/scout_game.css' %}">
+<header class="header">
+    <nav class="navbar navbar-dark shadow-none" style="background-color: #36454f;">
+        <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-basketball-ball"></i></a>
+    </nav>
+</header>
+
+<div class="game-side-header">
+	<div class="game-title">{{request.user.team_name}} vs. {{game.opponent}}</div>
+	<div class="game-date">{{game.date}}</div>
+</div>
+
+{% endblock side-content %}
+
+{% block content %}
+
+<!-- <div class="container"> -->
+	<div class="shotchart"></div>
+<!-- </div> -->
+
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/scout_game.css' %}"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="{% static 'js/d3-shot-chart.js' %}"></script>
+
+<script type="text/javascript">
+	var width = 600;
+	// draw court with specified width
+	draw_mens_ncaa(width);
+</script>
+
+{% endblock content %}

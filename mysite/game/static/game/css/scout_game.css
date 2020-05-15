@@ -1,0 +1,26 @@
+.game-side-header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 5px;
+}
+
+.game-title {
+	text-align: center;
+	font-size: 20px;
+	color: #DCDCDC;
+}
+
+.game-date {
+	text-align: center;
+	font-size: 15px;
+	color: #DCDCDC;
+}
+
+.main {
+	display: flex;
+	flex-grow: column;
+	align-items: center;
+	justify-content: center;
+}

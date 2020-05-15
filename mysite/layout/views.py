@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
-from player.models import Player
+from game.models import Game
+
 
 # Create your views here.
 
@@ -15,9 +16,6 @@ def dash_view(request):
         # If user not logged in, redirect to home
         return redirect('home')
 
-def shotchart_view(request):
-    if request.user.is_authenticated:
-        return render(request, 'layout/shotchart.html', {})
-    else:
-        return redirect('home')
-
+# def game_view(request, game_id):
+#     game = get_object_or_404(Game, pk=game_id)
+#     return render(request, 'layout/game.html', {'game': game})
