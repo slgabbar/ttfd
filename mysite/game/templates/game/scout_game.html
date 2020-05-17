@@ -19,9 +19,17 @@
 
 {% block content %}
 
-<!-- <div class="container"> -->
-	<div class="shotchart"></div>
-<!-- </div> -->
+	<div class="player-container">
+		{% for player in request.user.player.all %}
+			<div class="player-button">{{player}}</div>
+		{% endfor %}
+	</div>
+
+	<div class="shot-container">
+		<div class="shotchart"></div>
+		<div class="stat-button-container"></div>
+	</div>
+
 
 <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/scout_game.css' %}"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -30,11 +38,19 @@
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="{% static 'js/d3-shot-chart.js' %}"></script>
+<script src="{% static 'game/js/scout_game.js' %}"></script>
 
 <script type="text/javascript">
 	var width = 600;
 	// draw court with specified width
 	draw_mens_ncaa(width);
+	add_button("Offensive Rebound")
+	add_button("Defensive Rebound")
+	add_button("Assist")
+	add_button("Steal")
+	add_button("Turnover")
+	
+	// stat_buttons(width);
 </script>
 
 {% endblock content %}
