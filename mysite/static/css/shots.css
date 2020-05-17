@@ -1,0 +1,9 @@
+.made-shot {
+	fill: green;
+	stroke: green;
+}
+
+.miss-shot {
+	fill: red;
+	stroke: red;
+}

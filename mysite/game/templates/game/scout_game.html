@@ -18,11 +18,15 @@
 {% endblock side-content %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/shots.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'game/css/player.css' %}">
+
 
 	<div class="player-container">
 		{% for player in request.user.player.all %}
-			<div class="player-button">{{player}}</div>
+			<div class="player-button" onclick="player_clicked(this);">{{player}}</div>
 		{% endfor %}
+		<!-- <button class="btn-primary">Make Sub</button> -->
 	</div>
 
 	<div class="shot-container">
@@ -30,27 +34,32 @@
 		<div class="stat-button-container"></div>
 	</div>
 
+	<script type="text/javascript">
+		var player_selected = false;
+	</script>
 
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/scout_game.css' %}"> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
 
-<script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="{% static 'js/d3-shot-chart.js' %}"></script>
-<script src="{% static 'game/js/scout_game.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
 
-<script type="text/javascript">
-	var width = 600;
-	// draw court with specified width
-	draw_mens_ncaa(width);
-	add_button("Offensive Rebound")
-	add_button("Defensive Rebound")
-	add_button("Assist")
-	add_button("Steal")
-	add_button("Turnover")
-	
-	// stat_buttons(width);
-</script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="{% static 'js/d3-shot-chart.js' %}"></script>
+	<script src="{% static 'js/shots.js' %}"></script>
+	<script src="{% static 'game/js/scout_game.js' %}"></script>
+	<script src="{% static 'game/js/players.js' %}"></script>
+
+	<script type="text/javascript">
+		var width = 600;
+		draw_mens_ncaa(width);
+		var court = d3.select("svg");
+		register_shots(court, width);
+
+		add_button("Offensive Rebound")
+		add_button("Defensive Rebound")
+		add_button("Assist")
+		add_button("Steal")
+		add_button("Turnover")
+	</script>
 
 {% endblock content %}
