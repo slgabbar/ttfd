@@ -26,16 +26,25 @@
 		{% for player in request.user.player.all %}
 			<div class="player-button" onclick="player_clicked(this);">{{player}}</div>
 		{% endfor %}
-		<!-- <button class="btn-primary">Make Sub</button> -->
 	</div>
 
 	<div class="shot-container">
 		<div class="shotchart"></div>
-		<div class="stat-button-container"></div>
+		<div class="stat-container">
+			<div class="stat-button-container">
+			</div>
+
+			<div class="play-by-play", id="play-by-play">
+				<table class="table table-striped"><tbody></tbody></table>
+			</div>
+
+		</div>
 	</div>
 
 	<script type="text/javascript">
 		var player_selected = false;
+		var USER_SCORE = 0;
+		var OPP_SCORE = 0;
 	</script>
 
 
@@ -55,11 +64,12 @@
 		var court = d3.select("svg");
 		register_shots(court, width);
 
-		add_button("Offensive Rebound")
-		add_button("Defensive Rebound")
-		add_button("Assist")
-		add_button("Steal")
-		add_button("Turnover")
+		add_button_row("Offensive Rebound", "btn-light", "Defensive Rebound","btn-dark");
+		add_button_row("Assist", "btn-success", "Turnover","btn-danger");
+		add_button_row("Block", "btn-info", "Steal","btn-warning");
+		add_button_row("FT Make", "btn-success", "FT Miss","btn-danger");
+		add_button_row("Opponent +1", "btn-dark", "Opponent -1", "btn-light");
+
 	</script>
 
 {% endblock content %}

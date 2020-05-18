@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model as user_model
+from django.contrib.postgres.fields import ArrayField
+from player.models import Player
 
 User = user_model()
 

@@ -24,3 +24,5 @@ function unclick_player() {
 	player.classed("player-clicked", false);
 	player_selected = false;
 }
+
+
