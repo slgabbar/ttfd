@@ -15,10 +15,30 @@
 	<div class="game-date">{{game.date}}</div>
 </div>
 
+<table class="table-dark table-bordered player-table">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Player</th>
+			<th>Position</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for player in request.user.player.all %}
+			<tr ondrag="console.log('dragged');">
+				<th>{{player.number}}</th>
+				<th>{{player}}</th>
+				<th>{{player.position}}</th>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
 {% endblock side-content %}
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/shots.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'game/css/stats.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'game/css/player.css' %}">
 
 
@@ -32,6 +52,20 @@
 		<div class="shotchart"></div>
 		<div class="stat-container">
 			<div class="stat-button-container">
+				<div class="button-row">
+					<div class="stat-button" id="oreb">OREB</div>
+					<div class="stat-button" id="dreb">DREB</div>
+					<div class="stat-button" id="ast">Assist</div>
+					<div class="stat-button" id="tov">Turnover</div>
+					<div class="stat-button" id="foul">Foul</div>
+				</div>
+				<div class="button-row">
+					<div class="stat-button" id="stl">Steal</div>
+					<div class="stat-button" id="blk">Block</div>
+					<div class="stat-button" id="ft">FT Miss</div>
+					<div class="stat-button" id="ftm">FT Made</div>
+					<div class="stat-button" id="ex"></div>
+				</div>
 			</div>
 
 			<div class="play-by-play", id="play-by-play">
@@ -64,11 +98,12 @@
 		var court = d3.select("svg");
 		register_shots(court, width);
 
-		add_button_row("Offensive Rebound", "btn-light", "Defensive Rebound","btn-dark");
-		add_button_row("Assist", "btn-success", "Turnover","btn-danger");
-		add_button_row("Block", "btn-info", "Steal","btn-warning");
-		add_button_row("FT Make", "btn-success", "FT Miss","btn-danger");
-		add_button_row("Opponent +1", "btn-dark", "Opponent -1", "btn-light");
+		// add_button_row("Offensive Rebound", "btn-light", "Defensive Rebound","btn-dark");
+		// add_button_row("Assist", "btn-success", "Turnover","btn-danger");
+		// add_button_row("Block", "btn-info", "Steal","btn-warning");
+		// add_button_row("FT Make", "btn-success", "FT Miss","btn-danger");
+		// add_button_row("Opponent FT Make", "btn-dark", "Opponent FT Miss", "btn-light");
+		// add_button_row("Opponent 2FG", "btn-dark", "Opponent 3FG", "btn-light");
 
 	</script>
 

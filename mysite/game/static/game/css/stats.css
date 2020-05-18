@@ -1,0 +1,58 @@
+#oreb {
+	border: #ff9900 solid 3px;
+	background-color: #ffebcc;
+}
+
+#dreb {
+	border: solid #cc33ff 3px;
+	background: #f2ccff;
+}
+
+#ftm {
+	border: solid #009900 3px;
+	background: #ccffcc;
+}
+
+#ft {
+	border: solid #ff0000 3px;
+	background: #ffcccc;
+}
+
+#ast {
+	border: solid #3399ff 3px;
+	background: #cce6ff;
+}
+
+#tov {
+	border: solid #990033 3px;
+	background: #ffb3cc;
+}
+
+#foul {
+	border: solid black 3px;
+	background: #dcdcdc;
+}
+
+#stl {
+	border: solid #b3b300 3px;
+	background: #ffff4d;
+}
+
+#blk {
+	border: solid #006666 3px;
+	background: #00ffff;
+}
+
+#ex {
+	border: solid black 3px;
+}
+
+.stat-button:hover {
+	cursor: pointer;
+	filter: brightness(70%);
+}
+
+.stat-button:active {
+    /*color:red;*/
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
