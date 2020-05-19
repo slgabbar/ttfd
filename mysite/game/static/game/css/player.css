@@ -1,5 +1,23 @@
 .player-clicked {
-	background-color: red;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: Arial, Helvetica, sans-serif;
+	height: 80px;
+	width: 130px;
+	border-radius: 10px;
+	margin: 5px;
+	text-align: center;
+	box-shadow: 0 0 5px rgba(27, 179, 24, 1);
+	border: 1px solid rgba(27, 179, 24, 1);
+	background: repeating-linear-gradient(
+		45deg,
+		#98FB98,
+		#98FB98 10px,
+		#e0ffe3 10px,
+		#e0ffe3 20px
+	) !important;
 }
 
 .player-button {
@@ -8,23 +26,8 @@
 	align-items: center;
 	justify-content: center;
 	font-family: Arial, Helvetica, sans-serif;
-	height: 120px;
-	width: 100px;
-	border: solid #ff9900 3px;
-	border-radius: 10px;
-	background-color: #ffebcc;
-	margin: 5px;
-	text-align: center;
-}
-
-.empty {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-family: Arial, Helvetica, sans-serif;
-	height: 120px;
-	width: 100px;
+	height: 80px;
+	width: 130px;
 	border: dotted gray 3px;
 	border-radius: 10px;
 	background-color: #DCDCDC;
@@ -32,14 +35,17 @@
 	text-align: center;
 }
 
-.player-button:hover {
+.in-game {
+	background: #98FB98;
+	box-shadow: 0 0 5px rgba(27, 179, 24, 1);
+	border: 1px solid rgba(27, 179, 24, 1);
+}
+
+.in-game:hover {
 	cursor: pointer;
-	filter: brightness(70%); 
+	filter: brightness(70%);
 }
 
-.player-button:active {
-	box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+.in-game:active {
+	box-shadow: 0 0 5px -5px rgba(0,0,0,0.6);
 }
-
-
-

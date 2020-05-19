@@ -55,18 +55,18 @@
 <div class="right-container">
 	<div class="stat-button-container">
 		<div class="button-row">
-			<div class="stat-button" id="oreb">OREB</div>
-			<div class="stat-button" id="dreb">DREB</div>
-			<div class="stat-button" id="ast">Assist</div>
-			<div class="stat-button" id="tov">Turnover</div>
-			<div class="stat-button" id="foul">Foul</div>
+			<div class="stat-button disabled" id="oreb">OREB</div>
+			<div class="stat-button disabled" id="dreb">DREB</div>
+			<div class="stat-button disabled" id="ast">Assist</div>
+			<div class="stat-button disabled" id="tov">Turnover</div>
+			<div class="stat-button disabled" id="foul">Foul</div>
 		</div>
 		<div class="button-row">
-			<div class="stat-button" id="stl">Steal</div>
-			<div class="stat-button" id="blk">Block</div>
-			<div class="stat-button" id="ft">FT Miss</div>
-			<div class="stat-button" id="ftm">FT Made</div>
-			<div class="stat-button" id="ex"></div>
+			<div class="stat-button disabled" id="stl">Steal</div>
+			<div class="stat-button disabled" id="blk">Block</div>
+			<div class="stat-button disabled" id="ft">FT Miss</div>
+			<div class="stat-button disabled" id="ftm">FT Made</div>
+			<div class="stat-button disabled" id="ex"></div>
 		</div>
 	</div>
 	<div class="play-by-play", id="play-by-play">
@@ -76,7 +76,7 @@
 
 	<script type="text/javascript">
 		var GAME_READY = false;
-		var player_selected = false;
+		var PLAYER_SELECTED = false;
 		var USER_SCORE = 0;
 		var OPP_SCORE = 0;
 	</script>

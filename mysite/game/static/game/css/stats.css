@@ -1,3 +1,21 @@
+.disabled {
+	border: none !important;
+	color: darkgray;
+}
+
+.stat-button {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 5px;
+	height: 80px;
+	width: 80px;
+	border-radius: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
 #oreb {
 	border: #ff9900 solid 3px;
 	background-color: #ffebcc;
@@ -45,6 +63,7 @@
 
 #ex {
 	border: solid black 3px;
+	background: #DCDCDC;
 }
 
 .stat-button:hover {
