@@ -10,8 +10,10 @@ function register_shots(court, width) {
 			var zone = d3.event.target.id;
 			timer = setTimeout(function() {
 				if (!prevent) {
-					made_shot(court, zone, mouse);
-					unclick_player();
+					if (GAME_READY) {
+						made_shot(court, zone, mouse);
+						unclick_player();
+					} 
 				}
 				prevent=false;
 			}, delay);
@@ -21,8 +23,10 @@ function register_shots(court, width) {
 			var zone = d3.event.target.id;
 			clearTimeout(timer);
 			prevent = true;
-			miss_shot(court, zone, mouse);
-			unclick_player();
+			if (GAME_READY) {
+				miss_shot(court, zone, mouse);
+				unclick_player();
+			}
 		});
 	}
 

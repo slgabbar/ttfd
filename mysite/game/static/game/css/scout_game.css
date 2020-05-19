@@ -23,50 +23,40 @@
 	cursor: pointer;
 }
 
-.player-table tr:hover {
-	background: red;
-}
-
-.player-table tr:active {
-	background: blue;
-}
-
 .main {
 	display: flex;
-	flex-direction:column;
+	flex-direction:row;
 	align-items: center;
 }
 
+.left-container {
+	/*margin-top: 50px;*/
+	/*margin-bottom: 10px;*/
+	padding: 20px;
+	height: 100%;
+	/*border: solid red 3px;*/
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.right-container {
+	padding: 20px;
+	height: 100%;
+	flex-grow: 1;
+	/*border: solid blue 3px;*/
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .player-container {
-	width: 90%;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	margin: 25px;
-}
-
-.player-button {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	border: solid black 2px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	font-size: 12px;
-	padding: 5px;
-	height: 50px;
-	text-align: center;
-}
-
-.player-button:hover {
-	background-color: #DCDCDC;
-	cursor: pointer;
-}
-
-.player-button:active {
-	box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
 }
 
 .shot-container {
@@ -77,21 +67,12 @@
 	justify-content: space-between;
 }
 
-.stat-container {
-	flex-grow: 1;
-	margin: 10px;
+.stat-button-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	height: 564px;
-}
-
-
-.stat-button-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	/*border: solid black 3px;*/
 }
 
 .button-row {
@@ -106,7 +87,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	border: solid black 1px;
+	/*border: solid black 1px;*/
 	margin: 5px;
 	height: 80px;
 	width: 80px;
@@ -115,6 +96,7 @@
 }
 
 .play-by-play {
+	flex-grow: 1;
 	margin: 5px;
 	height: 50%;
 	width: 100%;
