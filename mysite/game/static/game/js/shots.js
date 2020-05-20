@@ -106,5 +106,3 @@ function record_shot(player, fg, zone) {
 
 
 
-
-

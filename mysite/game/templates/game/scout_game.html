@@ -55,18 +55,18 @@
 <div class="right-container">
 	<div class="stat-button-container">
 		<div class="button-row">
-			<div class="stat-button disabled" id="oreb">OREB</div>
-			<div class="stat-button disabled" id="dreb">DREB</div>
-			<div class="stat-button disabled" id="ast">Assist</div>
-			<div class="stat-button disabled" id="tov">Turnover</div>
-			<div class="stat-button disabled" id="foul">Foul</div>
+			<div class="stat-button disabled" id="oreb" onclick="stat_clicked(this);">OREB</div>
+			<div class="stat-button disabled" id="dreb" onclick="stat_clicked(this);">DREB</div>
+			<div class="stat-button disabled" id="ast" onclick="stat_clicked(this);">Assist</div>
+			<div class="stat-button disabled" id="tov" onclick="stat_clicked(this);">Turnover</div>
+			<div class="stat-button disabled" id="foul" onclick="stat_clicked(this);">Foul</div>
 		</div>
 		<div class="button-row">
-			<div class="stat-button disabled" id="stl">Steal</div>
-			<div class="stat-button disabled" id="blk">Block</div>
-			<div class="stat-button disabled" id="ft">FT Miss</div>
-			<div class="stat-button disabled" id="ftm">FT Made</div>
-			<div class="stat-button disabled" id="ex"></div>
+			<div class="stat-button disabled" id="stl" onclick="stat_clicked(this);">Steal</div>
+			<div class="stat-button disabled" id="blk" onclick="stat_clicked(this);">Block</div>
+			<div class="stat-button disabled" id="ft" onclick="stat_clicked(this);">FT Miss</div>
+			<div class="stat-button disabled" id="ftm" onclick="stat_clicked(this);">FT Made</div>
+			<div class="stat-button disabled" id="ex" onclick="stat_clicked(this);"></div>
 		</div>
 	</div>
 	<div class="play-by-play", id="play-by-play">
@@ -89,21 +89,14 @@
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 	<script src="{% static 'js/d3-shot-chart.js' %}"></script>
 	<script src="{% static 'game/js/shots.js' %}"></script>
-	<script src="{% static 'game/js/scout_game.js' %}"></script>
 	<script src="{% static 'game/js/players.js' %}"></script>
+	<script src="{% static 'game/js/stats.js' %}"></script>
 
 	<script type="text/javascript">
 		var width = 600;
 		draw_mens_ncaa(width);
 		var court = d3.select("svg");
 		register_shots(court, width);
-
-		// add_button_row("Offensive Rebound", "btn-light", "Defensive Rebound","btn-dark");
-		// add_button_row("Assist", "btn-success", "Turnover","btn-danger");
-		// add_button_row("Block", "btn-info", "Steal","btn-warning");
-		// add_button_row("FT Make", "btn-success", "FT Miss","btn-danger");
-		// add_button_row("Opponent FT Make", "btn-dark", "Opponent FT Miss", "btn-light");
-		// add_button_row("Opponent 2FG", "btn-dark", "Opponent 3FG", "btn-light");
 
 	</script>
 

@@ -68,10 +68,10 @@
 }
 
 .play-by-play {
-	flex-grow: 2;
+	height: 150px;
+	flex-grow: 1;
 	border: solid #DCDCDC 3px;
 	overflow: auto;
 }
-
 
 
