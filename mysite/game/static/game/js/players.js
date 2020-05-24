@@ -16,12 +16,14 @@ function player_clicked(e) {
 				player.classed("player-button", false);
 				PLAYER_SELECTED = true;
 				enable_stats();
+				d3.select(".shotchart").classed("disabled", false);
 			}
 		} else {
 			player.classed("player-clicked", true);
 			player.classed("player-button", false);
 			PLAYER_SELECTED = true;
 			enable_stats();
+			d3.select(".shotchart").classed("disabled", false);
 		}
 	}
 }
@@ -32,10 +34,12 @@ function unclick_player() {
 	player.classed("player-button", true);
 	PLAYER_SELECTED = false;
 	disable_stats();
+	d3.select(".shotchart").classed("disabled", true);
 }
 
-function onDragStart(e) {
-	e.dataTransfer.setData('text/plain', e.target.id);
+function onDragStart(e, p_id, p_name) {
+	var obj = {id:p_id, name:p_name};
+	e.dataTransfer.setData('text/plain', JSON.stringify(obj))
 }
 
 function onDragOver(e) {
@@ -43,22 +47,26 @@ function onDragOver(e) {
 }
 
 function onDrop(e) {
-	const sub_in = e.dataTransfer.getData('text');
-	const dragedRow = document.getElementById(sub_in);
+	const obj = JSON.parse(e.dataTransfer.getData('text'));
+	const player_id = parseInt(obj['id']);
+	const player_name = obj['name'];
+
+	const dragedRow = document.getElementById(player_id);
 
 	var dropzone = event.target;
 	var player_button = d3.select(dropzone);
 
 	if (!player_button.classed("empty")) {
-		// Need to make a sub
-		const oldRow = document.getElementById(player_button.text());
+		// Need to make a sub, make subbed out players table draggable again
+		const oldRow = document.getElementById(player_button.attr('id'));
 		var row = d3.select(oldRow)
 			.attr("draggable", "true")
 			.classed("text-muted", false);
 	} else {
 		player_button.classed("empty", false)
 	}
-	player_button.text(sub_in);
+	player_button.text(player_name);
+	player_button.attr('id', player_id);
 	d3.select(dragedRow)
 		.attr("draggable", "false")
 		.attr("class", "text-muted");

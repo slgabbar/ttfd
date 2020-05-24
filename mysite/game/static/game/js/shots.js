@@ -31,18 +31,19 @@ function register_shots(court, width) {
 	}
 
 function made_shot(court, zone, pos) {
-	var fg_type;
-	var increment_score;
-	if (zone=="inside-arc") {
-		//inside three point arc
-		fg_type = "2PT FG Make";
-		increment_score = 2;
-	} else { 
-		fg_type="3PT FG Make"; 
-		increment_score = 3;
-	}
-	try {
-		var player = d3.select(".player-clicked").text();
+	if (!d3.select(".shotchart").classed("disabled")) {
+		var fg_type;
+		var increment_score;
+		if (zone=="inside-arc") {
+			//inside three point arc
+			fg_type = "2PT FG Make";
+			increment_score = 2;
+		} else { 
+			fg_type="3PT FG Make"; 
+			increment_score = 3;
+		}
+	
+		var player = d3.select(".player-clicked");
 		
 		var shot = court.append("circle")
 			.attr("cx", pos[0])
@@ -52,20 +53,20 @@ function made_shot(court, zone, pos) {
 
 		USER_SCORE += increment_score;
 		record_shot(player, fg_type, zone);
-
-	} catch(err) {
-		console.log("No player was selected for shot.");
+	} else {
+		console.log("shotchart is disabled");
 	}
 }
 
 function miss_shot(court, zone, pos) {
-	var fg_type;
-	if (zone=="inside-arc") {
-		//inside three point arc
-		fg_type = "2PT FG Miss";
-	} else { fg_type="3PT FG Miss"; }
-	try {
-		var player = d3.select(".player-clicked").text();
+	if (!d3.select(".shotchart").classed("disabled")) {
+		var fg_type;
+		if (zone=="inside-arc") {
+			//inside three point arc
+			fg_type = "2PT FG Miss";
+		} else { fg_type="3PT FG Miss"; }
+		
+		var player = d3.select(".player-clicked");
 
 		var shot = court.append("circle")
 			.attr("cx", pos[0])
@@ -74,20 +75,29 @@ function miss_shot(court, zone, pos) {
 			.attr("class", "miss-shot");
 
 		record_shot(player, fg_type, zone);
-
-	} catch(err) {
-		console.log("No player was selected for shot.");
+	} else {
+		console.log("shotchart is disabled");
 	}
+
 }
 
 function record_shot(player, fg, zone) {
+	var player_name = player.text();
+	var player_id = parseInt(player.attr('id'));
+
 	var table = record_table.append("tr");
 
-	table.append("th").text(player);
+	table.append("th").text(player_name);
 
 	table.append("td").text(fg);
 
 	table.append("td").text(zone);
+
+	console.log(player_id);
+	console.log("shot: " + fg);
+	console.log("zone: " + zone);
+	console.log("--------------- ");
+
 
 	var score_text = table.append("td");
 	score_text.text(USER_SCORE + "-" + OPP_SCORE);
@@ -96,6 +106,7 @@ function record_shot(player, fg, zone) {
 	var elem = document.getElementById("play-by-play");
 	elem.scrollTop = elem.scrollHeight;
 }
+
 
 
 

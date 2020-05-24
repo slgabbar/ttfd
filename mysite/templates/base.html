@@ -5,6 +5,7 @@
 
 <!-- Custom stylesheet for base.css -->
 <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+<link rel="shortcut icon" href="#' type='image/x-icon' %}">
 
 <!-- Extra style sheets -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -56,7 +57,7 @@
 <!-- Content to be extended from other pages  -->
   <div class='content'>
     {% block content %}
-
+      <img src="{% static 'images/ttfdblack.png' %}" alt="My image">
     {% endblock content %}
   </div>
 

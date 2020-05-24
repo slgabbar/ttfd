@@ -18,17 +18,22 @@
 <table class="table-dark table-bordered player-table">
 	<thead>
 		<tr>
-			<th>#</th>
-			<th>Player</th>
-			<th>Position</th>
+			<!-- <th>#</th> -->
+			<th>Roster</th>
+			<th>id</th>
+			<!-- <th>Position</th> -->
 		</tr>
 	</thead>
 	<tbody>
 		{% for player in request.user.player.all %}
-			<tr id="{{player}}" draggable="true" ondragstart="onDragStart(event);">
-				<th>{{player.number}}</th>
+<!-- 			<script>
+				var player_name = "{{player}}"
+			</script> -->
+			<tr id="{{player.player_id}}" draggable="true" ondragstart="onDragStart(event, '{{player.player_id}}','{{player}}');">
+				<!-- <th>{{player.number}}</th> -->
 				<th>{{player}}</th>
-				<th>{{player.position}}</th>
+				<th>{{player.player_id}}</th>
+				<!-- <th>{{player.position}}</th> -->
 			</tr>
 		{% endfor %}
 	</tbody>
@@ -49,7 +54,7 @@
 		<div class="player-button text-muted empty" ondrop="onDrop(event);" ondragover='onDragOver(event);' onclick="player_clicked(this);">Player 4</div>
 		<div class="player-button text-muted empty" ondrop="onDrop(event);" ondragover='onDragOver(event);' onclick="player_clicked(this);">Player 5</div>
 	</div>
-	<div class="shotchart"></div>
+	<div class="shotchart disabled"></div>
 </div>
 
 <div class="right-container">
