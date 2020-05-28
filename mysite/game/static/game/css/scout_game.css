@@ -19,6 +19,45 @@
 	margin-bottom: 20px;
 }
 
+.score-board {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.score-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #DCDCDC;
+	margin:3px;
+	border: solid white 2px;
+	height: 100px;
+	width: 100px;
+}
+
+.score-head{
+	color: #DCDCDC;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	/*justify-content: center;*/
+	margin-top: 5px;
+}
+
+.digits {
+	display: flex;
+	flex-direction: row;
+	/*flex-grow: 1;*/
+	justify-content: center;
+	align-items: center;
+}
+
+.digits svg {
+	margin: 5px;
+}
+
 .player-table:hover {
 	cursor: pointer;
 }

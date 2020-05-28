@@ -10,10 +10,35 @@
     </nav>
 </header>
 
-<div class="game-side-header">
+<script type="text/javascript">
+	var GAME_READY = false;
+	var PLAYER_SELECTED = false;
+	var USER_SCORE = 0;
+	var OPP_SCORE = 0;
+</script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<!-- <script src="{% static 'game/js/scoreboard.js' %}"></script> -->
+
+
+<!-- <div class="game-side-header">
 	<div class="game-title">{{request.user.team_name}} vs. {{game.opponent}}</div>
 	<div class="game-date">{{game.date}}</div>
+</div> -->
+
+<div class="score-board disabled">
+
+	<div class='score-container'>
+		<div class="score-head"><b>HOME</b></div>
+		<div id="home-score" class="digits"></div>
+	</div>
+
+	<div class="score-container">
+		<div class="score-head"><b>AWAY</b></div>
+		<div id="away-score" class="digits"></div>
+	</div>
+
 </div>
+<script src="{% static 'game/js/scoreboard.js' %}"></script>
 
 <table class="table-dark table-bordered player-table">
 	<thead>
@@ -45,16 +70,21 @@
 <link rel="stylesheet" type="text/css" href="{% static 'game/css/shots.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'game/css/stats.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'game/css/player.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'game/css/scoreboard.css' %}">
 
 <div class="left-container">
+
 	<div class="player-container">
 		<div class="player-button text-muted empty" ondrop="onDrop(event);" ondragover='onDragOver(event);' onclick="player_clicked(this);">Player 1</div>
 		<div class="player-button text-muted empty" ondrop="onDrop(event);" ondragover='onDragOver(event);' onclick="player_clicked(this);">Player 2</div>
 		<div class="player-button text-muted empty" ondrop="onDrop(event);" ondragover='onDragOver(event);' onclick="player_clicked(this);">Player 3</div>
 		<div class="player-button text-muted empty" ondrop="onDrop(event);" ondragover='onDragOver(event);' onclick="player_clicked(this);">Player 4</div>
 		<div class="player-button text-muted empty" ondrop="onDrop(event);" ondragover='onDragOver(event);' onclick="player_clicked(this);">Player 5</div>
+		<div class="player-button text-muted opponent" onclick="player_clicked(this);">Opponent</div>
 	</div>
+
 	<div class="shotchart disabled"></div>
+
 </div>
 
 <div class="right-container">
@@ -71,22 +101,13 @@
 			<div class="stat-button disabled" id="blk" onclick="stat_clicked(this);">Block</div>
 			<div class="stat-button disabled" id="ft" onclick="stat_clicked(this);">FT Miss</div>
 			<div class="stat-button disabled" id="ftm" onclick="stat_clicked(this);">FT Made</div>
-			<div class="stat-button disabled" id="ex" onclick="stat_clicked(this);"></div>
+			<div class="stat-button disabled" id="ex"></div>
 		</div>
 	</div>
 	<div class="play-by-play", id="play-by-play">
 		<table class="table table-striped"><tbody></tbody></table>
 	</div>	
 </div>
-
-	<script type="text/javascript">
-		var GAME_READY = false;
-		var PLAYER_SELECTED = false;
-		var USER_SCORE = 0;
-		var OPP_SCORE = 0;
-	</script>
-
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
@@ -100,7 +121,7 @@
 	<script type="text/javascript">
 		var width = 600;
 		draw_mens_ncaa(width);
-		var court = d3.select("svg");
+		var court = d3.select(".shotchart").select("svg");
 		register_shots(court, width);
 
 	</script>

@@ -99,7 +99,7 @@ function disable_stats() {
 function start_game() {
 	d3.select(".play-by-play").style("border", "solid black 3px");
 	d3.select(".live-stats").style("border", "solid black");
-
+	start_scoreboard();
 
 	d3.selectAll(".player-button").each(function(d) {
 		var player = d3.select(this);

@@ -1,4 +1,4 @@
-var record_table = d3.select(".play-by-play").select(".table").select("tbody");
+var record_table = d3.select(".play-by-play").select(".table").select("tbody");;
 
 function register_shots(court, width) {
 	var timer = 0;
@@ -51,7 +51,13 @@ function made_shot(court, zone, pos) {
 			.attr("r", "3")
 			.attr("class", "made-shot");
 
-		USER_SCORE += increment_score;
+		if (player.classed("opponent")) {
+			OPP_SCORE += increment_score;
+			update_scoreboard('away', OPP_SCORE);
+		} else {
+			USER_SCORE += increment_score;
+			update_scoreboard('home', USER_SCORE);
+		}
 		record_shot(player, fg_type, zone);
 	} else {
 		console.log("shotchart is disabled");
@@ -93,10 +99,12 @@ function record_shot(player, fg, zone) {
 
 	table.append("td").text(zone);
 
-	console.log(player_id);
-	console.log("shot: " + fg);
-	console.log("zone: " + zone);
-	console.log("--------------- ");
+	if (!player.classed("opponent")) {
+		console.log(player_id);
+		console.log("shot: " + fg);
+		console.log("zone: " + zone);
+		console.log("--------------- ");
+	}
 
 
 	var score_text = table.append("td");
