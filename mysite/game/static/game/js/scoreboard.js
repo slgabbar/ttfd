@@ -82,7 +82,6 @@ function update_scoreboard(team, score) {
 
 
 function update_digits(l, r, n1, n2) {
-	console.log(n1, n2);
 	clear_digits(l);
 	clear_digits(r);
 	switch (n1) {

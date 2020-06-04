@@ -17,13 +17,7 @@
 	var OPP_SCORE = 0;
 </script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
-<!-- <script src="{% static 'game/js/scoreboard.js' %}"></script> -->
 
-
-<!-- <div class="game-side-header">
-	<div class="game-title">{{request.user.team_name}} vs. {{game.opponent}}</div>
-	<div class="game-date">{{game.date}}</div>
-</div> -->
 
 <div class="score-board disabled">
 
@@ -39,6 +33,8 @@
 
 </div>
 <script src="{% static 'game/js/scoreboard.js' %}"></script>
+
+<div style="color:white;">{{game.pk}}</div>
 
 <table class="table-dark table-bordered player-table">
 	<thead>

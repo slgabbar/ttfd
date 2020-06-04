@@ -36,10 +36,12 @@ function made_shot(court, zone, pos) {
 		var increment_score;
 		if (zone=="inside-arc") {
 			//inside three point arc
-			fg_type = "2PT FG Make";
+			var val = 2;
+			fg_type = "2PT FG";
 			increment_score = 2;
 		} else { 
-			fg_type="3PT FG Make"; 
+			var val = 3;
+			fg_type="3PT FG"; 
 			increment_score = 3;
 		}
 	
@@ -58,7 +60,7 @@ function made_shot(court, zone, pos) {
 			USER_SCORE += increment_score;
 			update_scoreboard('home', USER_SCORE);
 		}
-		record_shot(player, fg_type, zone);
+		record_shot(player, fg_type, 'make', val, zone, pos);
 	} else {
 		console.log("shotchart is disabled");
 	}
@@ -69,8 +71,8 @@ function miss_shot(court, zone, pos) {
 		var fg_type;
 		if (zone=="inside-arc") {
 			//inside three point arc
-			fg_type = "2PT FG Miss";
-		} else { fg_type="3PT FG Miss"; }
+			fg_type = "2PT FG";
+		} else { fg_type="3PT FG"; }
 		
 		var player = d3.select(".player-clicked");
 
@@ -80,16 +82,26 @@ function miss_shot(court, zone, pos) {
 			.attr("r", "3")
 			.attr("class", "miss-shot");
 
-		record_shot(player, fg_type, zone);
+		record_shot(player, fg_type, 'miss', 0, zone, pos);
 	} else {
 		console.log("shotchart is disabled");
 	}
 
 }
 
-function record_shot(player, fg, zone) {
+function scale(width, height, pos) {
+	x_scaled = (pos[0]/width) * 100;
+	y_scaled = ((height-pos[1])/height) * 100;
+	x_scaled = Math.round(x_scaled * 1e2) / 1e2;
+	y_scaled = Math.round(y_scaled * 1e2) / 1e2;
+	return [x_scaled, y_scaled];
+}
+
+function record_shot(player, fg, result, value, zone, pos) {
 	var player_name = player.text();
 	var player_id = parseInt(player.attr('id'));
+	var court_width = d3.select('.shotchart').select("svg").attr("width");
+	var court_height = d3.select('.shotchart').select("svg").attr("height");
 
 	var table = record_table.append("tr");
 
@@ -99,10 +111,16 @@ function record_shot(player, fg, zone) {
 
 	table.append("td").text(zone);
 
+	var scaled_pos = scale(court_width, court_height, pos);
+
 	if (!player.classed("opponent")) {
 		console.log(player_id);
-		console.log("shot: " + fg);
-		console.log("zone: " + zone);
+		console.log(fg);
+		console.log(result);
+		console.log(value);
+		console.log(zone);
+		console.log(scaled_pos[0]);
+		console.log(scaled_pos[1]);
 		console.log("--------------- ");
 	}
 
