@@ -69,6 +69,7 @@
 }
 
 .left-container {
+	/*background-color: blue;*/
 	height: 100%;
 	padding: 20px 0 20px 0;
 	display: flex;
@@ -78,6 +79,7 @@
 }
 
 .right-container {
+	/*background-color: red;*/
 	height: 100%; 
 	padding: 20px 10px 20px 10px;
 	flex-grow: 1;
@@ -107,10 +109,16 @@
 }
 
 .play-by-play {
-	height: 150px;
-	flex-grow: 1;
+	height: 70px;
+	width: 80%;
+	margin-top: 5px;
+	/*flex-grow: 1;*/
 	border: solid #DCDCDC 3px;
 	overflow: auto;
 }
 
+.live-stats-container {
+	margin-top: 20px;
+	/*border: solid black 3px;*/
+}
 

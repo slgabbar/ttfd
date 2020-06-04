@@ -33,4 +33,9 @@ class Player(models.Model):
     def height(self):
         return str(self.height_feet) + '\'' + str(self.height_inches)
 
+    def player_abrev(self):
+        return self.first_name[0] + ". " + self.last_name
+
+    def pos_abrev(self):
+        return self.position[0];
 

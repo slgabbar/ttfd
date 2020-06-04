@@ -85,6 +85,10 @@
 
 	<div class="shotchart disabled"></div>
 
+	<div class="play-by-play", id="play-by-play">
+		<table class="table table-striped"><tbody></tbody></table>
+	</div>	
+
 </div>
 
 <div class="right-container">
@@ -104,8 +108,55 @@
 			<div class="stat-button disabled" id="ex"></div>
 		</div>
 	</div>
-	<div class="play-by-play", id="play-by-play">
-		<table class="table table-striped"><tbody></tbody></table>
+	<div class="live-stats-container">
+		<table class="table table-sm table-dark table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Player</th>
+					<th>P</th>
+					<th>FG</th>
+					<th>FG%</th>
+					<th>3P</th>
+					<th>3P%</th>
+					<th>FT</th>
+					<th>FT%</th>
+					<th>REB</th>
+					<th>OREB</th>
+					<th>DREB</th>
+					<th>AST</th>
+					<th>TO</th>
+					<th>BLK</th>
+					<th>STL</th>
+					<th>PF</th>
+					<th>+/-</th>
+					<th>PTS</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for player in request.user.player.all %}
+				<tr>
+					<th>{{player.player_abrev}}</th>
+					<th>{{player.pos_abrev}}</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+					<th>-</th>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>	
 </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
