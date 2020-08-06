@@ -5,9 +5,9 @@
 	justify-content: center;
 	font-family: Arial, Helvetica, sans-serif;
 	height: 80px;
-	width: 100px;
+	width: 90px;
 	border-radius: 10px;
-	margin: 5px;
+	margin: 3px;
 	text-align: center;
 	box-shadow: 0 0 5px rgba(27, 179, 24, 1);
 	border: 1px solid rgba(27, 179, 24, 1);
@@ -27,11 +27,11 @@
 	justify-content: center;
 	font-family: Arial, Helvetica, sans-serif;
 	height: 80px;
-	width: 100px;
+	width: 90px;
 	border: dotted gray 3px;
 	border-radius: 10px;
 	background-color: #DCDCDC;
-	margin: 5px;
+	margin: 3px;
 	text-align: center;
 }
 

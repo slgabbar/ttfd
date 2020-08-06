@@ -69,13 +69,13 @@
 }
 
 .left-container {
-	/*background-color: blue;*/
+	margin-left: 20px;
 	height: 100%;
 	padding: 20px 0 20px 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
+	/*justify-content: space-between;*/
 }
 
 .right-container {
@@ -85,6 +85,7 @@
 	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 }
 
 .player-container {
@@ -92,12 +93,14 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
+	margin-bottom: 15px;
 }
 
 .stat-button-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-bottom: 20px;
 	/*border: solid black 3px;*/
 }
 
@@ -109,16 +112,11 @@
 }
 
 .play-by-play {
-	height: 70px;
+	height: 400px;
 	width: 80%;
 	margin-top: 5px;
 	/*flex-grow: 1;*/
 	border: solid #DCDCDC 3px;
 	overflow: auto;
-}
-
-.live-stats-container {
-	margin-top: 20px;
-	/*border: solid black 3px;*/
 }
 
