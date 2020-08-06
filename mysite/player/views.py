@@ -1,41 +1,62 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
+# from django.views.generic import DetailView
+# from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.core.exceptions import PermissionDenied
+
+from bootstrap_modal_forms.generic import (BSModalCreateView,
+                                           BSModalUpdateView,
+                                           BSModalReadView,
+                                           BSModalDeleteView)
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
 from .models import Player
 from .forms import PlayerForm
 
-def player(request):
-    if request.user.is_authenticated:
-        return render(request, 'player/player.html', {})
-    else:
-        return redirect('home')
+class PlayerDetail(LoginRequiredMixin, BSModalReadView):
+    model = Player
+    template_name = 'player/detail.html'
+    context_object_name = 'player'
 
-def add_player(request):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            form = PlayerForm(request.POST, request.user)
+    def get_object(self, queryset=None):
+        obj = super().get_object()
+        if obj.user != self.request.user:
+            raise PermissionDenied
+        return obj
 
-            if form.is_valid():
-                instance = form.save(commit=False)
-                instance.user = request.user
-                instance.save()
-                return redirect('dashboard')
-        else:
-            form = PlayerForm()
-        return render(request, 'player/add_player.html', {'form':form})
-    else:
-        return redirect('home')
+class PlayerCreate(BSModalCreateView):
+    template_name = 'player/add_player.html'
+    form_class = PlayerForm
+    success_url = reverse_lazy('dashboard')
+    model = Player
 
-def edit_player(request, pk):
-    player = get_object_or_404(Player, pk=pk)
-    form = PlayerForm(request.POST or None, instance=player)
-    if form.is_valid():
-        form.save()
-        return redirect('dashboard')
-    return render(request, 'player/edit_player.html', {'form':form})
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PlayerCreate, self).form_valid(form)
 
-def delete_player(request, pk):
-    player = get_object_or_404(Player, pk=pk)
-    if request.method=='POST':
-        player.delete()
-        return redirect('dashboard')
-    return render(request, 'player/delete_player.html', {'object':player})
+class PlayerUpdate(BSModalUpdateView):
+    model = Player
+    template_name = 'player/edit_player.html'
+    context_object_name = 'player'
+    form_class = PlayerForm
+    # fields = ('first_name', 'last_name', 'position', 'number',)
+    success_url = reverse_lazy('dashboard')
+
+    def get_object(self, queryset=None):
+        obj = super().get_object()
+        if obj.user != self.request.user:
+            raise PermissionDenied
+        return obj
+
+class PlayerDelete(BSModalDeleteView):
+    model = Player
+    template_name = 'player/delete_player.html'
+    success_url = reverse_lazy('dashboard')
+    success_message = "Player successfully deleted."
+
+    def get_object(self, queryset=None):
+        obj = super().get_object()
+        if obj.user != self.request.user:
+            raise PermissionDenied
+        return obj

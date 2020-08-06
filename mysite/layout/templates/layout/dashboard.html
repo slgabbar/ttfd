@@ -1,28 +1,149 @@
-{% extends 'base.html' %}
+{% extends 'base_dash.html' %}
+
+{% load static %}
+
+{% block side-content %}
+
+<header class="header">
+    <nav class="navbar navbar-dark shadow-none" style="background-color: #36454f;">
+        <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-basketball-ball"></i></a>
+    </nav>
+</header>
+
+<div class="sidenav-user p-3 mb-2 text-light"><i class="fas fa-user"></i> {{user.username}}</div>
+
+<div class="sidenav-section">
+    <div class="sidenav-category">
+        <div class="text-muted">SCOUT GAMES</div>
+        <div><i class="fas fa-signal text-light"></i> </div>
+    </div>
+    <ul class="sidenav-list">
+        <li class="sidenav-list-item text-light"><a class='new-game'></i>New Game</a></li>
+        <li class="sidenav-list-item text-light"><i class="fas fa-basketball-ball"></i> Item 3</li>
+        <li class="sidenav-list-item text-light"><i class="fas fa-basketball-ball"></i> Item 4</li>
+    </ul>
+</div>
+
+<div class="sidenav-section">
+    <div class="sidenav-category">
+        <div class="text-muted">SCOUT GAMES</div>
+        <div><i class="fas fa-signal text-light"></i> </div>
+    </div>
+    <ul class="sidenav-list">
+        <li class="sidenav-list-item text-light"><i class="fas fa-basketball-ball"></i> Shotchart</li>
+        <li class="sidenav-list-item text-light"><i class="fas fa-basketball-ball"></i> Item 2</li>
+        <li class="sidenav-list-item text-light"><i class="fas fa-basketball-ball"></i> Item 3</li>
+        <li class="sidenav-list-item text-light"><i class="fas fa-basketball-ball"></i> Item 4</li>
+    </ul>
+</div>
+
+{% endblock side-content %}
 
 {% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'layout/css/dashboard.css' %}">
 
-{% if request.user.is_authenticated %}
-    <h1 class="name">{{request.user.team_name}}</h1>
-    <h3>{{request.user.team_location}}</h3>
-    <p><a href="{% url 'edit_team' pk=request.user.pk %}">Edit Team Information</a></p>
-<hr>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <div class="row p-3 mb-2 text-dark bg-light">
+        <div><h2>{{ user.team_name }}</h2></div>
+        <div><h4 class="text-muted">{{user.team_location}}</h4></div>
+    </div>
+
+    <div class="table-responsive-sm p-3 player-table">
+
+        <div class="table-title">
+            <div>
+                <h3>Team <b>Roster</b></h3>
+            </div>
+            <div>
+                <button type="button" class="create-player btn btn-primary add-player-btn"><i class="fa fa-plus"></i> Add Player</button>
+            </div>
+        </div>
+
+        <table class="table table-hover table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Height</th>
+                    <th scope="col">Weight (lbs.)</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if user.player.all %}
+                {% for td in user.player.all %}
+                    <tr>
+                        <td>{{td.number}}</td>
+                        <td>{{td}}</td>
+                        <td>{{td.position}}</td>
+                        <td>{{td.height}}</td>
+                        <td>{{td.weight}}</td>
+                        <td style="width: 150px;">
+                            <div class="action-buttons">
+                                <div>
+                                    <a type="button" class="detail-player" data-id="{% url 'detail_player' pk=td.pk %}" style="color: blue">Info</a>
+                                </div>
+                                <div>
+                                    <a type="button" class="update-player" data-id="{% url 'edit_player' pk=td.pk %}" style="color: blue">Edit</a>
+                                </div>
+                                <div>
+                                    <a type="button" class="delete-player" data-id="{% url 'delete_player' pk=td.pk %}" style="color: red">Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="6">
+                            <div class="text-center">
+                                No players have been added yet. 
+                            </div>
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+<script type="text/javascript">
+  $(function () {
+
+    $(".update-team").each(function () {
+      $(this).modalForm({formURL: $(this).data('id')});
+    });
+
+    $(".create-player").modalForm({formURL: "{% url 'add_player' %}"});
+
+    $(".detail-player").each(function () {
+      $(this).modalForm({formURL: $(this).data('id')});
+    });
+
+    $(".update-player").each(function () {
+      $(this).modalForm({formURL: $(this).data('id')});
+    });
+
+    $(".delete-player").each(function () {
+      $(this).modalForm({formURL: $(this).data('id')});
+    });
+
+    $(".new-game").modalForm({formURL: "{% url 'create_game' %}"});
+
+  });
+</script>
 
 
-<a href="{% url 'add_player' %}">Add Player</a>
-
-    {% if user.player.all %}
-        <ul>
-        {% for td in user.player.all %}
-            <li><p>{{td}} <a href="{% url 'edit_player' pk=td.pk%}">edit/delete</a></p></li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No players have been added yet.</p>
-    {% endif %}
-
-{% endif %}
+{% endblock content%}
 
 
-{% endblock content %}
 

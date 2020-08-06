@@ -1,0 +1,13 @@
+.light-off {
+	stroke-width: 0px;
+}
+
+.light-on {
+	stroke: red;
+	stroke-width: 2px;
+}
+
+line {
+	stroke: #DCDCDC;
+	stroke-width: 1px;
+}

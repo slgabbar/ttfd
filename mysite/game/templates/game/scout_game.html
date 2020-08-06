@@ -1,0 +1,123 @@
+{% extends 'base_dash.html' %}
+
+{% load static %}
+
+{% block side-content %}
+<link rel="stylesheet" type="text/css" href="{% static 'game/css/scout_game.css' %}">
+<header class="header">
+    <nav class="navbar navbar-dark shadow-none" style="background-color: #36454f;">
+        <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-basketball-ball"></i></a>
+    </nav>
+</header>
+
+<script type="text/javascript">
+	var GAME_READY = false;
+	var PLAYER_SELECTED = false;
+	var USER_SCORE = 0;
+	var OPP_SCORE = 0;
+</script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+
+<div class="score-board disabled">
+
+	<div class='score-container'>
+		<div class="score-head"><b>HOME</b></div>
+		<div id="home-score" class="digits"></div>
+	</div>
+
+	<div class="score-container">
+		<div class="score-head"><b>AWAY</b></div>
+		<div id="away-score" class="digits"></div>
+	</div>
+
+</div>
+<script src="{% static 'game/js/scoreboard.js' %}"></script>
+
+<table class="table-dark table-bordered player-table">
+	<thead>
+		<tr>
+			<!-- <th>#</th> -->
+			<th>Roster</th>
+			<!-- <th>id</th> -->
+			<th>Position</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for player in request.user.player.all %}
+<!-- 			<script>
+				var player_name = "{{player}}"
+			</script> -->
+			<tr id="{{player.player_id}}" draggable="true" ondragstart="onDragStart(event, '{{player.player_id}}','{{player}}');">
+				<!-- <th>{{player.number}}</th> -->
+				<th>{{player}}</th>
+				<!-- <th>{{player.player_id}}</th> -->
+				<th>{{player.position}}</th>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock side-content %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'game/css/shots.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'game/css/stats.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'game/css/player.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'game/css/scoreboard.css' %}">
+
+<div class="left-container">
+
+	<div class="player-container">
+		<div class="player-button text-muted empty" ondrop="onDrop(event);" ondragover='onDragOver(event);' onclick="player_clicked(this);">Player 1</div>
+		<div class="player-button text-muted empty" ondrop="onDrop(event);" ondragover='onDragOver(event);' onclick="player_clicked(this);">Player 2</div>
+		<div class="player-button text-muted empty" ondrop="onDrop(event);" ondragover='onDragOver(event);' onclick="player_clicked(this);">Player 3</div>
+		<div class="player-button text-muted empty" ondrop="onDrop(event);" ondragover='onDragOver(event);' onclick="player_clicked(this);">Player 4</div>
+		<div class="player-button text-muted empty" ondrop="onDrop(event);" ondragover='onDragOver(event);' onclick="player_clicked(this);">Player 5</div>
+		<div class="player-button text-muted opponent" onclick="player_clicked(this);">Opponent</div>
+	</div>
+
+	<div class="shotchart disabled"></div>
+
+</div>
+
+<div class="right-container">
+	<div class="stat-button-container">
+		<div class="button-row">
+			<div class="stat-button disabled" id="oreb" onclick="stat_clicked(this);">OREB</div>
+			<div class="stat-button disabled" id="dreb" onclick="stat_clicked(this);">DREB</div>
+			<div class="stat-button disabled" id="ast" onclick="stat_clicked(this);">Assist</div>
+			<div class="stat-button disabled" id="tov" onclick="stat_clicked(this);">Turnover</div>
+			<div class="stat-button disabled" id="foul" onclick="stat_clicked(this);">Foul</div>
+		</div>
+		<div class="button-row">
+			<div class="stat-button disabled" id="stl" onclick="stat_clicked(this);">Steal</div>
+			<div class="stat-button disabled" id="blk" onclick="stat_clicked(this);">Block</div>
+			<div class="stat-button disabled" id="ft" onclick="stat_clicked(this);">FT Miss</div>
+			<div class="stat-button disabled" id="ftm" onclick="stat_clicked(this);">FT Made</div>
+			<div class="stat-button disabled" id="ex"></div>
+		</div>
+	</div>
+	<div class="play-by-play", id="play-by-play">
+		<table class="table table-striped"><tbody></tbody></table>
+	</div>	
+</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="{% static 'js/d3-shot-chart.js' %}"></script>
+	<script src="{% static 'game/js/shots.js' %}"></script>
+	<script src="{% static 'game/js/players.js' %}"></script>
+	<script src="{% static 'game/js/stats.js' %}"></script>
+
+	<script type="text/javascript">
+		var width = 550;
+		draw_mens_ncaa(width);
+		var court = d3.select(".shotchart").select("svg");
+		register_shots(court, width);
+
+	</script>
+
+{% endblock content %}

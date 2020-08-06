@@ -3,43 +3,71 @@
 
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'layout/base.css' %}">
+<!-- Custom stylesheet for base.css -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+<link rel="shortcut icon" href="#' type='image/x-icon' %}">
+
+<!-- Extra style sheets -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet">
+<!-- Bootstrap icons, basketball for login page -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
 <head>
-    <title>Take That For Data!</title>
-    <div class="header">
-        <a href="{% url 'home' %}" class="logo">Take that for data!</a>
-        <div class="header-right">
-            {% if request.user.is_authenticated %}
-                <p>
-                    <a href="{% url 'home' %}">Home</a>
-                    <a href="{% url 'dashboard' %}">Dashboard</a>
-                    <a href="{% url 'logout' %}">Logout</a></p>
-                <p>Welcome, {{request.user.username}}</p>
-            {% else %}
-                <p>
-                    <a href="{% url 'home' %}">Home</a>
-                    <a href="{% url 'register' %}">Register</a>
-                    <a href="{% url 'login' %}">Login</a></p>
-            {% endif %}
-            </div>
-        </div>
-    <hr>
+  <title>Take That For Data!</title>
 </head>
 
 <body>
 
-{% block content %}
+  <nav class="navbar navbar-dark navbar-expand-lg">
+    <a class="navbar-brand" href="{% url 'home' %}">Take That For Data!</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
 
-{% endblock content %}
-
-</body>
-
-<hr>
-<footer>
-    <div class="footer">
-        <p>Take That For Data! | Advanced basketball scouting application</p>
+    <div class="collapse navbar-collapse justify-content-end">
+      <ul class="navbar-nav">
+        {% if request.user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, {{request.user.username}}!</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item disabled" href="#">Account Settings</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </div>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+          </li>
+        {% endif %}
+      </ul>
     </div>
-</footer>
+  </nav>
+
+<!-- Content to be extended from other pages  -->
+  <div class='content'>
+    {% block content %}
+      <img src="{% static 'images/ttfdblack.png' %}" alt="My image">
+    {% endblock content %}
+  </div>
+
+<!-- Footer -->
+  <footer class="py-3 bg-light text-white-50" style="flex-shrink: none">
+    <div class="container text-center">
+      <span class="text-muted">Copyright &copy; ttfd.com</span>
+    </div>
+  </footer>
+  
+</body>
 
 </html>

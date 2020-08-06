@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'account',
     'layout',
     'player',
-  
+    'game',
+
     # Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'bootstrap_modal_forms',
+    'crispy_forms',
+    'widget_tweaks',
+
 ]
 
 MIDDLEWARE = [
@@ -131,3 +137,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# This will load static files form BASE_DIR/static. i.e. base.css for base.html
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3', 'bootstrap4', 'semantic-ui')

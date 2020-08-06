@@ -1,0 +1,12 @@
+/*login page styling*/
+
+.card {
+  max-width: 400px;
+}
+
+.card-img {
+  text-align: center;
+  padding: 0 0 20px;
+  font-size: 100px;
+  color: #EC6E00;
+}

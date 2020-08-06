@@ -1,4 +1,8 @@
+from crispy_forms.bootstrap import PrependedText
 from django import forms
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, HTML, Div
+
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 
@@ -6,14 +10,50 @@ from account.models import Account
 
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(max_length=60, help_text="Required. Add a valid email address.")
+    username = forms.CharField(label='', widget=forms.TextInput(
+            attrs={'placeholder': 'Username',}))
+    email = forms.EmailField(label='', max_length=60, widget=forms.EmailInput(
+            attrs={'placeholder': 'Email Address'}))
+    team_name = forms.CharField(label='', widget=forms.TextInput(
+            attrs={'placeholder': 'Team Name',}))
+    team_location = forms.CharField(label='', widget=forms.TextInput(
+            attrs={'placeholder': 'Team Location',}))
+    password1 = forms.CharField(label='', widget=forms.PasswordInput(
+            attrs={'placeholder': 'Create Password'}))
+    password2 = forms.CharField(label='', widget=forms.PasswordInput(
+            attrs={'placeholder': 'Repeat Password'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            PrependedText('username', '<i class="fa fa-user fa-fw"></i>'),
+            PrependedText('email', '<i class="fa fa-envelope fa-fw"></i>'),
+            PrependedText('team_name', '<i class="fa fa-info fa-fw"></i>'),
+            PrependedText('team_location', '<i class="fa fa-location-arrow fa-fw"></i>'),
+            PrependedText('password1', '<i class="fa fa-lock fa-fw"></i>'),
+            PrependedText('password2', '<i class="fa fa-lock fa-fw"></i>'),
+            Div(Submit('submit', 'Register', css_class="btn btn-primary btn-block"),css_class='form-group')
+        )
 
     class Meta:
         model = Account
         fields = ("username", "email", "team_name", "team_location", "password1", "password2")
 
 class AccountAuthenticationForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    email = forms.CharField(label='', widget=forms.EmailInput(
+        attrs={'class' : 'form-control','type': 'email','name': 'email','placeholder': 'Email'}))
+    password = forms.CharField(label='', widget=forms.PasswordInput(
+        attrs={'class': 'form-control','type': 'password','name': 'name','placeholder': 'Password'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            PrependedText('email', '<i class="fa fa-envelope fa-fw"></i>'),
+            PrependedText('password', '<i class="fa fa-lock fa-fw"></i>'),
+            Div(Submit('submit', 'Login', css_class="btn btn-primary btn-block"),css_class='form-group')
+        )
 
     class Meta:
         model = Account

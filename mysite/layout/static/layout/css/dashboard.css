@@ -1,0 +1,79 @@
+.row {
+	display: flex;
+	flex-direction: column;
+	margin: 20px 20px auto;
+}
+
+.player-table {
+	/*width: 700px;*/
+	margin: 20px 20px auto;
+	/*background: black;*/
+	/*box-shadow: 0 1px 1px rgba(0,0,0,.05);*/
+}
+
+tr{
+	line-height: 5px;
+	max-height: 5px;
+}
+
+.table-title{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.table-title .add-player-btn {
+	font-weight: bold;
+	text-shadow: none;
+	border-radius: 50px;
+	line-height: 13px;
+}
+
+.action-buttons {
+	/*height: 100%;*/
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/* Title on top of sidenav */
+.sidenav-title {
+	border: solid white 1px;
+}
+
+/* User block on sidenav */
+.sidenav-user {
+	background-color: #36454f;
+	filter: brightness(150%);
+}
+
+.sidenav-section {
+	display: flex;
+	flex-direction: column;
+	/*background: red;*/
+}
+
+.sidenav-category {
+	/*border: solid black;*/
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 10px 10px auto;
+}
+
+.sidenav-list {
+	padding: 0;
+	list-style-type: none;
+}
+
+.sidenav-list-item {
+	padding: 10px 10px 10px 10px;
+}
+
+.sidenav-list-item:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+

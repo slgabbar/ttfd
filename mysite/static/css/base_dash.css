@@ -1,0 +1,41 @@
+/* Base-Dash Page Layout*/
+html, body{
+	height: 100%;
+}
+
+.navbar {
+	background-color: #EE6F00;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 200px 1fr;
+	grid-template-rows: 50px 1fr 56px;
+	grid-template-areas:
+	"sidenav header"
+	"sidenav main"
+	"sidenav footer";
+	height: 100%;
+}
+
+/* Give every child element its grid name */
+.header {
+	grid-area: header;
+	background-color: #EE6F00;
+}
+
+.sidenav {
+	display: flex; /* Will be hidden on mobile */
+	flex-direction: column;
+	grid-area: sidenav;
+	background-color: #36454f;
+}
+
+.main {
+	grid-area: main;
+	background-color: white;
+}
+
+.footer {
+	grid-area: footer;
+}

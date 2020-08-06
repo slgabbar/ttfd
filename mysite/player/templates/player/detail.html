@@ -1,0 +1,25 @@
+{% load widget_tweaks %}
+
+<div class="modal-header">
+  <h3 class="modal-title">Player detail</h3>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+      <dl class="row">
+      <dt class="col-sm-3">First Name:</dt>
+      <dd class="col-sm-9">{{ player.first_name }}</dd>
+      <dt class="col-sm-3">Last Name:</dt>
+      <dd class="col-sm-9">{{ player.last_name }}</dd>
+      <dt class="col-sm-3">Position:</dt>
+      <dd class="col-sm-9">{{ player.position }}</dd>
+      <dt class="col-sm-3">Number:</dt>
+      <dd class="col-sm-9">{{ player.number }}</dd>
+    </dl>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>

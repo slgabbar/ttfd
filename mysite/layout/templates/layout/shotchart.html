@@ -1,0 +1,28 @@
+{% extends 'base_dash.html' %}
+
+{% load static %}
+
+{% block side-content %}
+{% endblock side-content %}
+
+{% block content %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'layout/css/shotchart.css' %}">
+
+	<!-- d3.js -->
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+
+	<!-- Bootstrap and Jquery JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+	<div class="container">
+		<div class="shotchart"></div>	
+		<p></p>	
+	</div>
+
+	<!-- shotchart d3.js file -->
+	<script src="{% static 'js/d3-shotchart.js' %}"></script>
+
+{% endblock content %}
