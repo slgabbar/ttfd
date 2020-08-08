@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.core import serializers
 from .forms import StatsForm
@@ -23,3 +23,9 @@ def postStats(request):
     # some error occured
     return JsonResponse({"error": ""}, status=400)
 # Create your views here.
+
+def deleteStats(request, pk):
+    stat = get_object_or_404(Stats, pk=pk)
+    if request.method == 'POST':
+        stat.delete()
+    return JsonResponse({"status": "ok"}, status=204)

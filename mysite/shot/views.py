@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.core import serializers
 from .forms import ShotForm
@@ -23,3 +23,9 @@ def postShot(request):
     # some error occured
     return JsonResponse({"error": ""}, status=400)
 # Create your views here.
+
+def deleteShot(request, pk):
+    shot = get_object_or_404(Shot, pk=pk)
+    if request.method == 'POST':
+        shot.delete()
+    return JsonResponse({"status": "ok"}, status=204)
