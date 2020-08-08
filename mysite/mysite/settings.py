@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'player',
     'game',
     'shot',
+    'stats',
 
     # Django Apps
     'django.contrib.admin',
