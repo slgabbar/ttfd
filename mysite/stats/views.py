@@ -1,14 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.core import serializers
-from .forms import ShotForm
-from .models import Shot
+from .forms import StatsForm
+from .models import Stats
 
-def postShot(request):
+def postStats(request):
     # request should be ajax and method should be POST.
     if request.is_ajax and request.method == "POST":
         # get the form data
-        form = ShotForm(request.POST)
+        form = StatsForm(request.POST)
         # save the data and after fetch the object in instance
         if form.is_valid():
             instance = form.save()
@@ -24,8 +24,8 @@ def postShot(request):
     return JsonResponse({"error": ""}, status=400)
 # Create your views here.
 
-def deleteShot(request, pk):
-    shot = get_object_or_404(Shot, pk=pk)
+def deleteStats(request, pk):
+    stat = get_object_or_404(Stats, pk=pk)
     if request.method == 'POST':
-        shot.delete()
+        stat.delete()
     return JsonResponse({"status": "ok"}, status=204)
