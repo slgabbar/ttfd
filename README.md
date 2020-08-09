@@ -1,9 +1,17 @@
-# Take That For Data
-Take That For Data is a web application built using the Django web framework, that allows users to scout basketball games in real time, and record advanced statistics. 
+# Take That For Data!
+Take That For Data is a web application built using the Django web framework, that allows users to scout basketball games in real time, and record advanced statistics.
 
-### Setup Instructions:
+## High Level Goals
+- Coaches will have ability to create accounts through TTFD, where they will be able to upload team and player information.
+- Coaches will be able to scout games in real-time using our interactive shot chart and simple UI.
+- Coaches will be able to view advanced team and player statistics on their dashboard.
+- Coaches will be able to view advanced data visualizations of their teams shot trends, through the use of our shot chart.
+- Coaches will have the ability to print detailed game and player reports
 
-- This project currently requires postgresql to be installed on your local machine.After installing postgresql navigate to the  postgres shell and run:
+
+#### Setup Instructions:
+
+- This project currently requires postgresql to be installed on your local machine. After installing postgresql navigate to the  postgres shell and run:
 
   CREATE USER myuser WITH PASSWORD 'mypass';\
   CREATE DATABASE ttfd_db;\
@@ -16,7 +24,7 @@ Take That For Data is a web application built using the Django web framework, th
 
   pip install -r requirements.txt
   
-  ## Running the app:
+  ### Running the app:
   - Before starting the app you must apply migrations, and create a superuser
   
     python manage.py migrate
