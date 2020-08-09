@@ -6,6 +6,7 @@ class Shot(models.Model):
     player_id = models.IntegerField()
     shot_type = models.CharField(max_length=100)
     result = models.CharField(max_length=100)
+    value = models.IntegerField()
     zone = models.CharField(max_length=100)
     x_pos = models.DecimalField(decimal_places=2, max_digits=4)
     y_pos = models.DecimalField(decimal_places=2, max_digits=4)

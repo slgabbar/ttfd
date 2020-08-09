@@ -51,7 +51,13 @@ function made_shot(court, zone, pos) {
 			.attr("cx", pos[0])
 			.attr("cy", pos[1])
 			.attr("r", "3")
-			.attr("class", "made-shot");
+			.attr("class", "made-shot")
+			.attr("id", function() {
+				var s_id = "shot_" + SHOT_COUNT.toString();
+				shots_list.push(s_id);
+				SHOT_COUNT += 1;
+				return s_id;
+			});
 
 		if (player.classed("opponent")) {
 			OPP_SCORE += increment_score;
@@ -80,7 +86,13 @@ function miss_shot(court, zone, pos) {
 			.attr("cx", pos[0])
 			.attr("cy", pos[1])
 			.attr("r", "3")
-			.attr("class", "miss-shot");
+			.attr("class", "miss-shot")
+			.attr("id", function() {
+				var s_id = "shot_" + SHOT_COUNT.toString();
+				shots_list.push(s_id);
+				SHOT_COUNT += 1;
+				return s_id;
+			});
 
 		record_shot(player, fg_type, 'miss', 0, zone, pos);
 	} else {
@@ -103,7 +115,13 @@ function record_shot(player, fg, result, value, zone, pos) {
 	var court_width = d3.select('.shotchart').select("svg").attr("width");
 	var court_height = d3.select('.shotchart').select("svg").attr("height");
 
-	var table = record_table.append("tr");
+	var table = record_table.append("tr")
+				.attr("id", function() {
+					var pbp_id = "pbp_" + PBP_COUNT.toString();
+					pbp_list.push(pbp_id);
+					PBP_COUNT += 1;
+					return pbp_id;
+				});
 
 	table.append("th").text(player_name);
 
@@ -114,14 +132,37 @@ function record_shot(player, fg, result, value, zone, pos) {
 	var scaled_pos = scale(court_width, court_height, pos);
 
 	if (!player.classed("opponent")) {
-		console.log(player_id);
-		console.log(fg);
-		console.log(result);
-		console.log(value);
-		console.log(zone);
-		console.log(scaled_pos[0]);
-		console.log(scaled_pos[1]);
-		console.log("--------------- ");
+
+		var shot_data = {'csrfmiddlewaretoken':csrftoken,
+						 'game_id':game_pk,
+						 'player_id':player_id,
+						 'shot_type':fg,
+						 'result':result,
+						 'value': value,
+						 'zone':zone,
+						 'x_pos':scaled_pos[0],
+						 'y_pos':scaled_pos[1]};
+
+		serializedData = $.param(shot_data);
+
+		$.ajax({
+			type: 'POST',
+            url: "../../shot/post/ajax/shot",
+            data: serializedData,
+            success: function (response) {
+            	var instance = JSON.parse(response["instance"]);
+            	var new_play = [instance[0]['model'], instance[0]['pk'], instance[0]['fields']['value']];
+            	plays.push(new_play);
+            },
+            error: function (response) {
+                alert(response["responseJSON"]["error"]);
+            }
+
+		})
+	} else {
+		// shot that was recorded was from the opponent
+		var opponent_play = ['opponent','shot',value];
+		plays.push(opponent_play);
 	}
 
 
