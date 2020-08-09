@@ -138,6 +138,7 @@ function record_shot(player, fg, result, value, zone, pos) {
 						 'player_id':player_id,
 						 'shot_type':fg,
 						 'result':result,
+						 'value': value,
 						 'zone':zone,
 						 'x_pos':scaled_pos[0],
 						 'y_pos':scaled_pos[1]};
@@ -150,7 +151,7 @@ function record_shot(player, fg, result, value, zone, pos) {
             data: serializedData,
             success: function (response) {
             	var instance = JSON.parse(response["instance"]);
-            	var new_play = [instance[0]['model'], instance[0]['pk']];
+            	var new_play = [instance[0]['model'], instance[0]['pk'], instance[0]['fields']['value']];
             	plays.push(new_play);
             },
             error: function (response) {
@@ -160,7 +161,7 @@ function record_shot(player, fg, result, value, zone, pos) {
 		})
 	} else {
 		// shot that was recorded was from the opponent
-		var opponent_play = ['opponent','shot'];
+		var opponent_play = ['opponent','shot',value];
 		plays.push(opponent_play);
 	}
 

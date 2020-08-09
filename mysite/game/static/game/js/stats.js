@@ -9,11 +9,13 @@ function stat_clicked(e) {
 
 function record_stat(player, stat) {
 	var ft = false;
+	var opp_value = 0;
 	var player_name = player.text();
 	var player_id = parseInt(player.attr('id'));
 	var stat_data;
 	POST_URL = '';
 	if (stat=="FT Made") {
+		opp_value = 1;
 		ft = true;
 		POST_URL = "../../shot/post/ajax/shot";
 		stat_data = {'csrfmiddlewaretoken':csrftoken,
@@ -21,6 +23,7 @@ function record_stat(player, stat) {
 						 'player_id':player_id,
 						 'shot_type':'FT',
 						 'result':'made',
+						 'value': 1,
 						 'zone':'free throw',
 						 'x_pos':0,
 						 'y_pos':0};
@@ -39,6 +42,7 @@ function record_stat(player, stat) {
 						 'player_id':player_id,
 						 'shot_type':'FT',
 						 'result':'miss',
+						 'value': 0,
 						 'zone':'free throw',
 						 'x_pos':0,
 						 'y_pos':0};
@@ -79,7 +83,7 @@ function record_stat(player, stat) {
             	if (!ft) {
             		new_play = [instance[0]['model'], instance[0]['pk']];
             	} else {
-            		new_play = ['user_free_throw', instance[0]['pk']];
+            		new_play = ['user_free_throw', instance[0]['pk'],instance[0]['fields']['value']];
             	}
             	plays.push(new_play);
             },
@@ -89,7 +93,7 @@ function record_stat(player, stat) {
 
 		})
 	} else {
-		var opponent_play = ['opponent','stat'];
+		var opponent_play = ['opponent','stat', opp_value];
 		plays.push(opponent_play);
 	}
 }

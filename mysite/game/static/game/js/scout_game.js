@@ -24,15 +24,21 @@ function undoPlay() {
 	var pk = tmp[1].toString();
 	var delete_url;
 	if (tmp[0] == "shot.shot") {
-		// user shot: pop, remove from chart, delete from DB
+		// user shot: pop, remove from chart, update score, delete from DB
+		var shot_value = tmp[2];
 		var last_shot = "#" + shots_list.pop();
 		d3.select(last_shot).remove();
+		USER_SCORE = USER_SCORE - shot_value;
+		update_scoreboard('home', USER_SCORE);
 		delete_url = '../../shot/delete/' + pk;
 	} else if (tmp[0] == "stats.stats") {
 		// user stat (non FT): pop, delete from DB
 		delete_url = "../../stats/delete/" + pk;
 	} else if (tmp[0] == "user_free_throw") {
-		// user FT: delete from DB
+		// user FT: update score, delete from DB
+		var shot_value = tmp[2];
+		USER_SCORE = USER_SCORE - shot_value;
+		update_scoreboard('home', USER_SCORE);
 		delete_url = '../../shot/delete/' + pk;
 	}
 	else {
@@ -43,6 +49,10 @@ function undoPlay() {
 		}
 		var opp_last_play = "#" + pbp_list.pop();
 		d3.select(opp_last_play).remove();
+
+		//update opp score
+		OPP_SCORE = OPP_SCORE - tmp[2];
+		update_scoreboard('away', OPP_SCORE);
 		return true;
 	}
 
