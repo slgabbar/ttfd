@@ -15,9 +15,16 @@
 	var PLAYER_SELECTED = false;
 	var USER_SCORE = 0;
 	var OPP_SCORE = 0;
+    var csrftoken = '{{ csrf_token }}';
+    var game_pk = '{{ game.pk }}';
+    var plays = [];
+    var SHOT_COUNT = 0;
+    var PBP_COUNT = 0;
+    var shots_list = [];
+    var pbp_list = [];
+
 </script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
-
 
 <div class="score-board disabled">
 
@@ -32,6 +39,7 @@
 	</div>
 
 </div>
+
 <script src="{% static 'game/js/scoreboard.js' %}"></script>
 
 <table class="table-dark table-bordered player-table">
@@ -101,6 +109,9 @@
 	<div class="play-by-play", id="play-by-play">
 		<table class="table table-striped"><tbody></tbody></table>
 	</div>	
+	<div>
+		<button class="btn btn-danger" style="margin-top: 10px;" onclick="undoPlay();">Undo</button>
+	</div>
 </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -111,6 +122,7 @@
 	<script src="{% static 'game/js/shots.js' %}"></script>
 	<script src="{% static 'game/js/players.js' %}"></script>
 	<script src="{% static 'game/js/stats.js' %}"></script>
+	<script src="{% static 'game/js/scout_game.js' %}"></script>
 
 	<script type="text/javascript">
 		var width = 550;
