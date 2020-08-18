@@ -8,6 +8,16 @@ Take That For Data is a web application built using the Django web framework, th
 - Coaches will be able to view advanced data visualizations of their teams shot trends, through the use of our shot chart.
 - Coaches will have the ability to print detailed game and player reports
 
+---
+
+Currently users have the ability to:
+* Create account and sign-in
+* Create/Edit/Delete players to their account
+* Scout basketball games with shotchart and have statistics stored to database.
+  
+Next steps:
+* Clean up the interactive scout game page
+* Add dashboard page so users can view team statistics and reports
 
 #### Setup Instructions:
 
