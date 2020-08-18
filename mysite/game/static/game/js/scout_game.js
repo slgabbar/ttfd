@@ -1,4 +1,3 @@
-
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -73,6 +72,10 @@ function undoPlay() {
 			console.log("successful delete.")
 		}
 	});
+}
+
+function end_game() {
+	confirm("Press a button!");
 }
 
 

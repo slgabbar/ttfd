@@ -12,14 +12,25 @@ class Game(models.Model):
         ('Away', 'Away'),
     ]
 
+    GAME_STATUS = [
+        ('In Progress', 'In Progress'),
+        ('Done', 'Done'),
+    ]
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='game', null=True)
     game_id = models.AutoField(primary_key=True)
     date = models.DateField()
     location = models.CharField(max_length=100)
     opponent = models.CharField(max_length=100)
+
     home_away = models.CharField(
         max_length=10,
         choices=HOME_AWAY,
+    )
+
+    status = models.CharField(
+        max_length=15,
+        choices=GAME_STATUS,
     )
 
     def __str__(self):

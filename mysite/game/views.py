@@ -32,6 +32,7 @@ class CreateGame(LoginRequiredMixin, BSModalCreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        form.instance.status = 'In Progress'
         return super(CreateGame, self).form_valid(form)
 
     def get_success_url(self):
