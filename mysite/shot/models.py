@@ -1,9 +1,12 @@
 from django.db import models
 
+from player.models import Player
+from game.models import Game
+
 # Create your models here.
 class Shot(models.Model):
-    game_id = models.IntegerField()
-    player_id = models.IntegerField()
+    game_id = models.ForeignKey(Game, on_delete=models.CASCADE)
+    player_id = models.ForeignKey(Player, on_delete=models.CASCADE)
     shot_type = models.CharField(max_length=100)
     result = models.CharField(max_length=100)
     value = models.IntegerField()
