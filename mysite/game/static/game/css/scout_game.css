@@ -120,3 +120,10 @@
 	overflow: auto;
 }
 
+.game-contorls {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+

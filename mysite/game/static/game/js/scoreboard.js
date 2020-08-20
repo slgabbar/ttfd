@@ -1,3 +1,5 @@
+// This file builds the scoreboard and renders digits 0-9
+
 var left_home = d3.select("#home-score").append("svg")
 	.attr("width", 20)
 	.attr("height", 60);

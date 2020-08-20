@@ -1,5 +1,11 @@
+// Record table is the tvable that holds all the shots
 var record_table = d3.select(".play-by-play").select(".table").select("tbody");;
 
+
+/*
+* This function listens for a click (made-shot) or double-clikc(miss shot)
+* then calls the corrsponf fucntion to record shot to DB
+*/
 function register_shots(court, width) {
 	var timer = 0;
 	var delay = 200;
@@ -30,6 +36,13 @@ function register_shots(court, width) {
 		});
 	}
 
+/*
+* Function called when a shot is 'made'
+* first checks to see if the shot chart was enabled, if not dont 
+* 8 record any shot and dont add new 'dot' to the chart
+* If enabled, incremnt the score, record the fg_type, zone and player
+* inceent SHOT_COUT, update scoreboard and call record shot.
+*/
 function made_shot(court, zone, pos) {
 	if (!d3.select(".shotchart").classed("disabled")) {
 		var fg_type;
@@ -72,6 +85,10 @@ function made_shot(court, zone, pos) {
 	}
 }
 
+/*
+* Same funciton as missed shot, although appends red circle if a miss, 
+* call record shot to update DB
+*/
 function miss_shot(court, zone, pos) {
 	if (!d3.select(".shotchart").classed("disabled")) {
 		var fg_type;
@@ -101,6 +118,8 @@ function miss_shot(court, zone, pos) {
 
 }
 
+// Very simple fucntion to sclae the click events as coordinate [0,100]
+// this will make it easier to recreate shotchart from DB later on
 function scale(width, height, pos) {
 	x_scaled = (pos[0]/width) * 100;
 	y_scaled = ((height-pos[1])/height) * 100;
@@ -109,6 +128,12 @@ function scale(width, height, pos) {
 	return [x_scaled, y_scaled];
 }
 
+/*
+* Funciton to actually record shot to DB.
+* Get all useful info for DB (name, id, shot_type, make/miss etc...)
+* If the shot was from oppomet, do not record to DB
+* Otherwise post to DB with ajax, store the pk response in plays list
+*/
 function record_shot(player, fg, result, value, zone, pos) {
 	var player_name = player.text();
 	var player_id = parseInt(player.attr('id'));
