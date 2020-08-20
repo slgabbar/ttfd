@@ -1,5 +1,13 @@
+// Record table is out play-by play table detailng att the plays
 var record_table = d3.select(".play-by-play").select(".table").select("tbody");
 
+/*
+* Stat-clicked is called when a user clicks a stat button, it can only
+* be clicked when a player has already been selected.
+*
+* When clicked, it retrieves the player, and stat type, unclicks the
+* the player and calls record stat to record in DB
+*/
 function stat_clicked(e) {
 	var player = d3.select(".player-clicked");
 	var stat = d3.select(e).text();
@@ -7,6 +15,18 @@ function stat_clicked(e) {
 	record_stat(player, stat);
 }
 
+
+/*
+* Thhis function goes through the process of recorded stat to the DB
+* First checks if that stat was a Free Throw
+* 	- If it is, records the stat as a shot in the shots DB
+* If the stat is not a regular free throw
+* - Records as a regular stat in  the DB
+*
+* Opponent stats are printed to the PBP table, however they are not stored
+* in the DB
+*
+*/
 function record_stat(player, stat) {
 	var ft = false;
 	var opp_value = 0;

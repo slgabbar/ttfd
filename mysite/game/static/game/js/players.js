@@ -1,3 +1,10 @@
+/*
+* this function handles logic for when a plyer is clicked
+* if no otherplayer clikced, select player and set to 'clicked'
+* if some of ther player was laready clicked, unclick that player
+* and slect current player
+* if the player was already selected simply unselect.
+*/
 function player_clicked(e) {
 	var player = d3.select(e);
 
@@ -28,6 +35,7 @@ function player_clicked(e) {
 	}
 }
 
+// helper fucntion to unclicke a player who was 'clicked'
 function unclick_player() {
 	var player = d3.select(".player-clicked");
 	player.classed("player-clicked", false);
@@ -37,15 +45,19 @@ function unclick_player() {
 	d3.select(".shotchart").classed("disabled", true);
 }
 
+// transfer thatr name and id when dragged
 function onDragStart(e, p_id, p_name) {
 	var obj = {id:p_id, name:p_name};
 	e.dataTransfer.setData('text/plain', JSON.stringify(obj))
 }
 
+// necessary to prevent default event
 function onDragOver(e) {
 	e.preventDefault();
 }
 
+// drop the player to rotation spot. Potentially 'sub out' 
+// other player if necessary, uopdate bench table.
 function onDrop(e) {
 	const obj = JSON.parse(e.dataTransfer.getData('text'));
 	const player_id = parseInt(obj['id']);
@@ -74,6 +86,7 @@ function onDrop(e) {
 	e.dataTransfer.clearData();
 }
 
+// check if game ready if so set game ready to true and start_game
 function checkGameReady() {
 	var check = d3.selectAll(".empty");
 	if (check.empty()) {
@@ -82,6 +95,7 @@ function checkGameReady() {
 	}
 }
 
+// enable stat buttons so they are clickable, will higghligh stats so they glow
 function enable_stats() {
 	d3.selectAll(".stat-button").each(function(d) {
 		var button = d3.select(this);
@@ -89,6 +103,7 @@ function enable_stats() {
 	});
 }
 
+// disable stas sp theyrre unclickable
 function disable_stats() {
 	d3.selectAll(".stat-button").each(function(d) {
 		var button = d3.select(this);
@@ -96,6 +111,8 @@ function disable_stats() {
 	});
 }
 
+
+// start game, highlight players, highligh ppb table
 function start_game() {
 	d3.select(".play-by-play").style("border", "solid black 3px");
 	d3.select(".live-stats").style("border", "solid black");

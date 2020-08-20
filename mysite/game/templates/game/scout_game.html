@@ -11,15 +11,31 @@
 </header>
 
 <script type="text/javascript">
+	// GAME_READ - bool, wether or not 5 players have been subbed in and game can start
+	// PLAYER_SELECTED - wether a player has been clicked and highlighted
 	var GAME_READY = false;
 	var PLAYER_SELECTED = false;
+
+	// USER_SCORE, OPP_SCORE -> keeps track of game score
 	var USER_SCORE = 0;
 	var OPP_SCORE = 0;
+
+	// csrf token of page, needed for ajax, 
+	// SHOULD EVENTUALLY REMOVE THIS AND DO IT NOT ON THE HTML PAGE
+	// game_pk is primary key of current game
     var csrftoken = '{{ csrf_token }}';
     var game_pk = '{{ game.pk }}';
+
+    // plays holds the list of plays for the play by play table
     var plays = [];
+
+    // SHOT_COUNT AND PBP_COUNT are the number of shots and plays currently 
+    // recorded, gets updates as plays added, and removed
     var SHOT_COUNT = 0;
     var PBP_COUNT = 0;
+
+    // shots_list and pbp_list hold the lists of recent shots and pbp added to db
+    // when shot removed, pops most recent off list and deleted from DB
     var shots_list = [];
     var pbp_list = [];
 

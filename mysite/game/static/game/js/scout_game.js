@@ -1,3 +1,6 @@
+/*
+* gets CSRF token for ajax post. Need to use this in shots.js as well!
+*/
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -14,6 +17,10 @@ function getCookie(name) {
     return cookieValue;
 }
 
+/*
+* when undo clicked, get last play to happen, if from a user delete
+* corresponding shot/stat from db. If from opponet just remove from table only.
+*/
 function undoPlay() {
 	// console.log(shots_list);
 	if (plays.length == 0) {
@@ -74,6 +81,9 @@ function undoPlay() {
 	});
 }
 
+/** When end game clicke, update game model feild 'status' from 'In Progress'
+* to 'Done'. Reroute to the dashboard.
+*/
 function end_game() {
 	$.ajax({
 		url: '../end_game/' + game_pk,
