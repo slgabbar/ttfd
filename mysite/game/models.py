@@ -5,9 +5,12 @@ from player.models import Player
 
 User = user_model()
 
+# Custom game manager, add in_progress which will filter data to only
+# games still currently in progress.
 class GameManager(models.Manager):
-    def get_queryset(self):
-        return super(GameManager, self).get_queryset().filter(status='In Progress')
+    def in_progress(self):
+        # return super(GameManager, self).get_queryset().filter(status='In Progress')
+        return self.get_queryset().filter(status='In Progress')
 
 class Game(models.Model):
 
@@ -36,6 +39,7 @@ class Game(models.Model):
         max_length=15,
         choices=GAME_STATUS,
     )
+
     objects = GameManager()
 
     def __str__(self):

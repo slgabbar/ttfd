@@ -33,8 +33,8 @@
                 </div>
             <div class="modal-body">
                 <ul>
-                    {% if user.game.all %}
-                    {% for game in user.game.all %}
+                    {% if user.game.in_progress %}
+                    {% for game in user.game.in_progress %}
                         <li><a href="{% url 'scout_game' pk=game.pk %}">{{game}}</a></li>
                     {% endfor %}
                     {% else %}
@@ -90,6 +90,7 @@
                     <th scope="col">Position</th>
                     <th scope="col">Height</th>
                     <th scope="col">Weight (lbs.)</th>
+                    <th scope="col">Age</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -102,6 +103,7 @@
                         <td>{{td.position}}</td>
                         <td>{{td.height}}</td>
                         <td>{{td.weight}}</td>
+                        <td>{{td.age}}</td>
                         <td style="width: 150px;">
                             <div class="action-buttons">
                                 <div>

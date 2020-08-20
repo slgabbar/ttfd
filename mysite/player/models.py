@@ -25,6 +25,8 @@ class Player(models.Model):
     height_inches = models.IntegerField(choices=list(zip(range(0, 12), range(0, 12))))
     weight = models.IntegerField()
 
+    age = models.IntegerField(validators=[MaxValueValidator(99), MinValueValidator(0)])
+
     number = models.IntegerField(validators=[MaxValueValidator(99), MinValueValidator(0)])
 
     def __str__(self):
