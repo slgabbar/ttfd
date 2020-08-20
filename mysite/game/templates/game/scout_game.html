@@ -66,8 +66,9 @@
 	</tbody>
 </table>
 
-<div>
-	<a class="btn btn-primary" href="{% url 'dashboard' %}" onclick="end_game();">End Game</a>
+<div class='game-controls'>
+	<a class="btn btn-primary btn-sm" href="{% url 'dashboard' %}" onclick="end_game();">End Game</a>
+	<a class="btn btn-primary btn-sm" href="{% url 'dashboard' %}" onclick="">Save & Exit</a>
 </div>
 
 {% endblock side-content %}

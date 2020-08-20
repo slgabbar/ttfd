@@ -5,6 +5,10 @@ from player.models import Player
 
 User = user_model()
 
+class GameManager(models.Manager):
+    def get_queryset(self):
+        return super(GameManager, self).get_queryset().filter(status='In Progress')
+
 class Game(models.Model):
 
     HOME_AWAY = [
@@ -32,6 +36,7 @@ class Game(models.Model):
         max_length=15,
         choices=GAME_STATUS,
     )
+    objects = GameManager()
 
     def __str__(self):
         game_str = self.home_away + " vs. " + self.opponent

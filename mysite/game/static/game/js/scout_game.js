@@ -75,7 +75,21 @@ function undoPlay() {
 }
 
 function end_game() {
-	confirm("Press a button!");
+	$.ajax({
+		url: '../end_game/' + game_pk,
+		beforeSend: function(xhr) {
+        	xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+        },
+        type: 'POST',
+		data: {},
+		error: function(result){
+			console.log(result);
+		},
+		success: function(result) {
+			console.log("successful delete.")
+		}
+	})
+	// confirm("Press a button!");
 }
 
 

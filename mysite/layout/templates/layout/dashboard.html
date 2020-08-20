@@ -19,23 +19,37 @@
     </div>
     <ul class="sidenav-list">
         <li class="inactive sidenav-list-item text-light"><a class='new-game'></i>New Game</a></li>
-        <!-- <li class="sidenav-list-item text-light"><i class="fas fa-basketball-ball"></i> Item 3</li> -->
-        <!-- <li class="sidenav-list-item text-light"><i class="fas fa-basketball-ball"></i> Item 4</li> -->
+        <li class="inactive sidenav-list-item text-light"><a data-toggle="modal" data-target="#resumeGameModal">Resume Game</a></li>
     </ul>
-</div>
-<!-- 
-<div class="sidenav-section">
-    <div class="sidenav-category">
-        <div class="text-muted">SCOUT GAMES</div>
-        <div><i class="fas fa-signal text-light"></i> </div>
+
+    <div class="modal fade" id="resumeGameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Select the game you want to resume:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                <ul>
+                    {% if user.game.all %}
+                    {% for game in user.game.all %}
+                        <li><a href="{% url 'scout_game' pk=game.pk %}">{{game}}</a></li>
+                    {% endfor %}
+                    {% else %}
+                    <a>You currently have no games in progress. Exit and go to 'New Game' to begin scouting a new game.</a>
+                    {% endif %}
+
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
     </div>
-    <ul class="sidenav-list">
-        <li class="sidenav-list-item text-light"><i class="fas fa-basketball-ball"></i> Shotchart</li>
-        <li class="sidenav-list-item text-light"><i class="fas fa-basketball-ball"></i> Item 2</li>
-        <li class="sidenav-list-item text-light"><i class="fas fa-basketball-ball"></i> Item 3</li>
-        <li class="sidenav-list-item text-light"><i class="fas fa-basketball-ball"></i> Item 4</li>
-    </ul>
-</div> -->
+</div>
 
 {% endblock side-content %}
 

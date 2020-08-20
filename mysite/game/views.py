@@ -1,4 +1,7 @@
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
 from django.views.generic.detail import DetailView
+from django.views.generic import ListView
 # from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.core.exceptions import PermissionDenied
@@ -40,3 +43,11 @@ class CreateGame(LoginRequiredMixin, BSModalCreateView):
             return reverse_lazy('create_game')
         else:
             return reverse_lazy('scout_game', kwargs={'pk':self.object.pk})
+
+def end_game(request, pk):
+    game = get_object_or_404(Game, pk=pk)
+    if request.method == 'POST':
+        game.status = 'Done'
+        game.save()
+    return JsonResponse({"status": "ok"}, status=204)
+
